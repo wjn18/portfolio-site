@@ -1,0 +1,5 @@
+node_modules
+dist
+.edge-profile
+cloudflared*.log
+edge-shot*.png
