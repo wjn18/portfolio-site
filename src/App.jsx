@@ -224,11 +224,12 @@ export default function App() {
         <header className="topbar">
           <div className="brand-block">
             <div className="eyebrow">{profile.englishTitle}</div>
-            <div className="brand-row">
-              <img className="brand-photo" src={profilePhoto} alt={`${profile.name} portrait`} />
-              <div className="brand-name">{profile.name}</div>
-            </div>
+            <div className="brand-name">{profile.name}</div>
             <div className="brand-role">{profile.role}</div>
+          </div>
+
+          <div className="topbar-photo-wrap" aria-hidden="true">
+            <img className="topbar-photo" src={profilePhoto} alt="" />
           </div>
 
           <nav className="topnav">

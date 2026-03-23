@@ -80,11 +80,10 @@ a:hover {
   position: sticky;
   top: 16px;
   z-index: 5;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) auto auto;
   align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  gap: 24px;
   margin-bottom: 28px;
   padding: 18px 22px;
   border: 1px solid rgba(148, 163, 184, 0.18);
@@ -106,25 +105,28 @@ a:hover {
 .brand-block {
   display: grid;
   gap: 6px;
+  min-width: 0;
 }
 
-.brand-row {
+.topbar-photo-wrap {
   display: flex;
   align-items: center;
-  gap: 14px;
+  justify-content: center;
+  justify-self: center;
+  min-width: clamp(132px, 17vw, 188px);
 }
 
-.brand-photo {
-  width: 56px;
-  height: 56px;
-  flex: 0 0 56px;
+.topbar-photo {
+  width: clamp(96px, 11vw, 136px);
+  height: clamp(96px, 11vw, 136px);
   object-fit: cover;
-  border-radius: 16px;
-  border: 1px solid rgba(148, 163, 184, 0.22);
-  box-shadow: 0 10px 24px rgba(2, 8, 23, 0.28);
+  border-radius: 28px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  box-shadow: 0 18px 36px rgba(2, 8, 23, 0.3);
 }
 
 .brand-name {
+  margin-top: 6px;
   font-size: clamp(28px, 4vw, 38px);
   font-weight: 800;
 }
@@ -139,6 +141,7 @@ a:hover {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  justify-self: end;
 }
 
 .topnav a,
@@ -395,6 +398,19 @@ h3 {
 }
 
 @media (max-width: 980px) {
+  .topbar {
+    grid-template-columns: 1fr auto;
+  }
+
+  .topbar-photo-wrap {
+    justify-self: end;
+  }
+
+  .topnav {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
   .hero-grid,
   .about-grid,
   .project-grid,
@@ -423,14 +439,18 @@ h3 {
     top: 10px;
   }
 
-  .brand-row {
-    gap: 12px;
+  .topbar {
+    grid-template-columns: 1fr;
   }
 
-  .brand-photo {
-    width: 48px;
-    height: 48px;
-    flex-basis: 48px;
+  .topbar-photo-wrap,
+  .topnav {
+    justify-self: start;
+  }
+
+  .topbar-photo {
+    width: 96px;
+    height: 96px;
   }
 
   .game-grid {
