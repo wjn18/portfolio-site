@@ -1,4 +1,5 @@
 import React from "react";
+import profilePhoto from "../IDphoto.PNG";
 
 const profile = {
   name: "吴嘉宁",
@@ -221,9 +222,12 @@ export default function App() {
 
       <div className="site-wrap">
         <header className="topbar">
-          <div>
+          <div className="brand-block">
             <div className="eyebrow">{profile.englishTitle}</div>
-            <div className="brand-name">{profile.name}</div>
+            <div className="brand-row">
+              <img className="brand-photo" src={profilePhoto} alt={`${profile.name} portrait`} />
+              <div className="brand-name">{profile.name}</div>
+            </div>
             <div className="brand-role">{profile.role}</div>
           </div>
 
