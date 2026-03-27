@@ -1,7 +1,8 @@
 import React from "react";
 import profilePhoto from "../IDphoto.PNG";
 
-const demoVideoHref = "/moving-fortress-demo.mp4";
+const demoVideoHref =
+  "https://www.bilibili.com/video/BV1fGX3BtES2/?share_source=copy_web&vd_source=a2e61c6d61d8bfc0fad6ebcde9ac1d85";
 
 const profile = {
   name: "吴嘉宁",
@@ -24,6 +25,7 @@ const actions = [
   {
     label: "观看 Demo 视频",
     href: demoVideoHref,
+    external: true,
   },
 ];
 
@@ -43,7 +45,7 @@ const projects = [
     ],
     links: [
       {
-        label: "站内观看 Demo 视频",
+        label: "Bilibili 演示视频",
         href: demoVideoHref,
       },
     ],
