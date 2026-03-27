@@ -1,6 +1,8 @@
 import React from "react";
 import profilePhoto from "../IDphoto.PNG";
 
+const demoVideoHref = "/moving-fortress-demo.mp4";
+
 const profile = {
   name: "吴嘉宁",
   englishTitle: "Game Design Portfolio",
@@ -21,8 +23,7 @@ const actions = [
   { label: "下载简历", href: "/resume.pdf", download: true },
   {
     label: "观看 Demo 视频",
-    href: "https://www.bilibili.com/video/BV1YBQoB5EaG/?share_source=copy_web&vd_source=a2e61c6d61d8bfc0fad6ebcde9ac1d85",
-    external: true,
+    href: demoVideoHref,
   },
 ];
 
@@ -42,12 +43,8 @@ const projects = [
     ],
     links: [
       {
-        label: "Bilibili 演示视频",
-        href: "https://www.bilibili.com/video/BV1YBQoB5EaG/?share_source=copy_web&vd_source=a2e61c6d61d8bfc0fad6ebcde9ac1d85",
-      },
-      {
-        label: "Google Drive 演示视频",
-        href: "https://drive.google.com/file/d/1a_qDFy6pqkLYol1dOhG5DXNppAjDNNgH/view?usp=drive_link",
+        label: "站内观看 Demo 视频",
+        href: demoVideoHref,
       },
     ],
   },
