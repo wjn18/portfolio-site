@@ -2,7 +2,8 @@ import React from "react";
 import profilePhoto from "../IDphoto.PNG";
 
 const demoVideoHref =
-  "https://www.bilibili.com/video/BV1gvXiBSEjx/?share_source=copy_web&vd_source=a2e61c6d61d8bfc0fad6ebcde9ac1d85";
+  "https://www.bilibili.com/video/BV1nsocB5EY5/?share_source=copy_web&vd_source=a2e61c6d61d8bfc0fad6ebcde9ac1d85";
+const demoDesignCaseHref = "/docs/Demo%20DesignCase.pdf";
 
 const profile = {
   name: "吴嘉宁",
@@ -44,6 +45,10 @@ const projects = [
       "将策划思路转化为可运行 Demo，用于验证玩法节奏与系统可行性",
     ],
     links: [
+      {
+        label: "策划案站内查看",
+        href: demoDesignCaseHref,
+      },
       {
         label: "Bilibili 演示视频",
         href: demoVideoHref,
@@ -155,7 +160,7 @@ const gameExperience = [
   "燕云十六声（100h+）",
   "命运 2（120h+）",
   "三角洲行动（100h+）",
-  "皇室战争（80h+）12000皇冠",
+  "皇室战争（200h+）12000皇冠",
   "黑神话：悟空（50h）",
   "王国保卫战 / Thronefall / 战争传说 / 王者荣耀 等",
 ];
