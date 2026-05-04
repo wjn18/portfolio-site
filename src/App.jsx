@@ -7,7 +7,7 @@ const ue5DemoVideoHref =
   "https://www.bilibili.com/video/BV1hVRBB8En3/?share_source=copy_web&vd_source=a2e61c6d61d8bfc0fad6ebcde9ac1d85";
 const unityDemoDesignHref = "/docs/unity3d-arpg-battle-system-demo-design.pdf";
 const ue5DemoFileHref = "https://pan.baidu.com/s/1IPX7dLClaLcBYdBtzkrzgQ?pwd=h5rq";
-const ue5DemoDesignHref = "https://www.kdocs.cn/l/cgvYIQXVailB";
+const ue5DemoDesignHref = "/docs/ue5-open-world-city-level-demo.pdf";
 
 const profile = {
   name: "吴嘉宁",
