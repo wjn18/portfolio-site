@@ -250,9 +250,17 @@ function ActionButton({ item }) {
   );
 }
 
-function ProjectCard({ project, light = false }) {
+function ProjectCard({ project, light = false, accent = false }) {
+  const className = [
+    "project-card",
+    light ? "project-card-light" : "",
+    accent ? "project-card-accent" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <article className={light ? "project-card project-card-light" : "project-card"}>
+    <article className={className}>
       <div className="project-topline">
         <span className="caption-tag">{project.type}</span>
         <span className="badge-pill">{project.role}</span>
@@ -345,7 +353,7 @@ export default function App() {
             ))}
           </nav>
 
-          <a href="/resume.pdf" target="_blank" rel="noreferrer" className="button-outline nav-cta">
+          <a href="/resume.pdf" target="_blank" rel="noreferrer" className="button-primary nav-cta">
             在线简历
           </a>
         </div>
@@ -441,7 +449,7 @@ export default function App() {
 
             <div className="spotlight-grid">
               {spotlightProjects.map((project) => (
-                <ProjectCard key={project.title} project={project} light />
+                <ProjectCard key={project.title} project={project} light accent />
               ))}
             </div>
 
