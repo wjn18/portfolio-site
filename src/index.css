@@ -3,9 +3,9 @@
   font-family: "FerrariSans", -apple-system, system-ui, sans-serif;
   color: #ffffff;
   background: #181818;
-  --primary: #da291c;
-  --primary-active: #b01e0a;
-  --primary-hover: #9d2211;
+  --primary: #3a17d5;
+  --primary-active: #4813cf;
+  --primary-hover: #5a08de;
   --ink: #ffffff;
   --body: #969696;
   --body-strong: #ffffff;
@@ -21,6 +21,11 @@
   --surface-soft-light: #f7f7f7;
   --surface-strong-light: #ebebeb;
   --on-primary: #ffffff;
+  --accent-yellow-hypersail: #fff200;
+  --accent-yellow: #f6e500;
+  --semantic-info: #4c98b9;
+  --semantic-success: #03904a;
+  --semantic-warning: #bf13f3;
 }
 
 * {

@@ -4,9 +4,9 @@ name: Ferrari
 description: A luxury-automotive brand whose marketing surfaces read as cinematic editorial. The base canvas is **near-black** (`#181818`) holding pure white display type; white-canvas bands appear only inside specific editorial contexts (preowned listings, pricing tables). The single brand voltage is **Rosso Corsa** (`#da291c`) — the iconic Ferrari racing red — used scarcely on primary CTAs, the Cavallino mark, and Formula 1 race-position highlights. Type runs **FerrariSans** at modest weights (display 500, body 400) — never bombastic. Spacing follows an explicit 8px token ladder (`xxxs` 4px through `super` 128px); generous editorial pacing throughout. The brand's strongest visual signature is the **full-bleed cinematic hero photograph** that fills the viewport top with car photography, model details, or trackside livery — followed by a tighter editorial body layout below.
 
 colors:
-  primary: "#da291c"
-  primary-active: "#b01e0a"
-  primary-hover: "#9d2211"
+  primary: "#3a17d5"
+  primary-active: "#4813cf"
+  primary-hover: "#5a08de"
   ink: "#ffffff"
   body: "#969696"
   body-strong: "#ffffff"
@@ -29,7 +29,7 @@ colors:
   accent-yellow: "#f6e500"
   semantic-info: "#4c98b9"
   semantic-success: "#03904a"
-  semantic-warning: "#f13a2c"
+  semantic-warning: "#bf13f3"
 
 typography:
   display-mega:
@@ -271,14 +271,14 @@ components:
 
 ## Overview
 
-Ferrari's marketing site reads as cinematic editorial — closer to a luxury-magazine spread than a typical car-OEM site. The base canvas is **near-black** (`{colors.canvas}` — #181818) holding pure white display type; white-canvas bands appear only inside specific editorial contexts (preowned listings, pricing tables, dealer surfaces). The single brand voltage is **Rosso Corsa** (`{colors.primary}` — #da291c), the iconic Ferrari racing red, used scarcely on primary CTAs, the Cavallino mark, and Formula 1 race-position highlights.
+Ferrari's marketing site reads as cinematic editorial — closer to a luxury-magazine spread than a typical car-OEM site. The base canvas is **near-black** (`{colors.canvas}` — #181818) holding pure white display type; white-canvas bands appear only inside specific editorial contexts (preowned listings, pricing tables, dealer surfaces). The single brand voltage is **Rosso Corsa** (`{colors.primary}` — #1b08cb), the iconic Ferrari racing red, used scarcely on primary CTAs, the Cavallino mark, and Formula 1 race-position highlights.
 
 Type runs **FerrariSans** as the single sans family at modest weights — display 500, body 400. CTA labels render in uppercase with generous tracking (1.1-1.4px). The brand never uses bold display copy.
 
 The brand's strongest visual signature is the **full-bleed cinematic hero photograph** — top-of-page imagery shows car photography, model details, or trackside livery without any chrome competing with it. Headlines float over the bottom of the photo or sit in a tight band beneath. Spacing follows the explicit 8px token ladder: `xxxs` 4 / `xxs` 8 / `xs` 16 / `sm` 24 / `md` 32 / `lg` 48 / `xl` 64 / `xxl` 96 / `super` 128.
 
 **Key Characteristics:**
-- Single accent: `{colors.primary}` (Rosso Corsa #da291c) for primary CTAs, the Cavallino, F1 race-position highlights. Used scarcely.
+- Single accent: `{colors.primary}` (Rosso Corsa #2c1cda) for primary CTAs, the Cavallino, F1 race-position highlights. Used scarcely.
 - Near-black canvas (#181818) — never pure black. White-canvas bands only inside editorial contexts.
 - Single sans family: FerrariSans across every text role.
 - Display weight stays at 500 — never bold.
@@ -291,10 +291,10 @@ The brand's strongest visual signature is the **full-bleed cinematic hero photog
 ## Colors
 
 ### Brand & Accent
-- **Rosso Corsa** (`{colors.primary}` — #da291c): The iconic Ferrari racing red. Primary CTA fill, Cavallino mark, F1 driver-position highlights. Used scarcely.
-- **Rosso Corsa Active** (`{colors.primary-active}` — #b01e0a): Press state.
-- **Rosso Corsa Hover-darker** (`{colors.primary-hover}` — #9d2211): Documented for completeness; per the no-hover policy this is not used in preview HTML.
-- **Hypersail Yellow** (`{colors.accent-yellow-hypersail}` — #fff200) + **Yellow** (`{colors.accent-yellow}` — #f6e500): Sub-brand accents reserved for the Hypersail sailing program and the global focus-ring color. Not part of the main automotive palette.
+- **Rosso Corsa** (`{colors.primary}` — #6b1cda): The iconic Ferrari racing red. Primary CTA fill, Cavallino mark, F1 driver-position highlights. Used scarcely.
+- **Rosso Corsa Active** (`{colors.primary-active}` — #6e0ab0): Press state.
+- **Rosso Corsa Hover-darker** (`{colors.primary-hover}` — #590ae2): Documented for completeness; per the no-hover policy this is not used in preview HTML.
+- **Hypersail Yellow** (`{colors.accent-yellow-hypersail}` — #006ec7) + **Yellow** (`{colors.accent-yellow}` — #007eeb): Sub-brand accents reserved for the Hypersail sailing program and the global focus-ring color. Not part of the main automotive palette.
 
 ### Surface
 - **Canvas** (`{colors.canvas}` — #181818): Near-black page floor — never pure black, slight warmth.
@@ -320,8 +320,8 @@ The brand's strongest visual signature is the **full-bleed cinematic hero photog
 
 ### Semantic
 - **Info** (`{colors.semantic-info}` — #4c98b9): Info badges, callout backgrounds.
-- **Success** (`{colors.semantic-success}` — #03904a): Confirmation.
-- **Warning** (`{colors.semantic-warning}` — #f13a2c): Validation warnings.
+- **Success** (`{colors.semantic-success}` — #038cd1): Confirmation.
+- **Warning** (`{colors.semantic-warning}` — #0c00eb): Validation warnings.
 
 ## Typography
 
@@ -386,7 +386,7 @@ The system uses **photographic depth + brightness-step** elevation. No drop shad
 
 ### Decorative Depth
 - **Full-bleed cinema photography** is the brand's primary depth treatment.
-- **Brand red gradient** (`linear-gradient(180deg, #a00c01, #da291c 64%)`): The Rosso Corsa gradient used inside accent bands and CTA hover states.
+- **Brand red gradient** (`linear-gradient(180deg, #0567f0, #045dd0 64%)`): The Rosso Corsa gradient used inside accent bands and CTA hover states.
 - **Dark grey gradient** (`linear-gradient(180deg, #3c3c3c, #030303 64%)`): Atmospheric darken used at section transitions.
 
 ## Shapes
