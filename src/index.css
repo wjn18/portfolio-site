@@ -54,7 +54,12 @@ img {
 }
 
 .site-shell {
-  background: var(--canvas);
+  background:
+    linear-gradient(180deg, rgba(24, 24, 24, 0.72), rgba(24, 24, 24, 0.92)),
+    var(--site-background);
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
 }
 
 .topbar {
@@ -290,6 +295,13 @@ h3 {
 .cta-band,
 .footer-dark {
   padding: 96px 0;
+}
+
+.spec-band,
+.editorial-dark,
+.cta-band,
+.footer-dark {
+  background: rgba(24, 24, 24, 0.9);
 }
 
 .spec-grid {

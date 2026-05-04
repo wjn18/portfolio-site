@@ -1,5 +1,5 @@
 import React from "react";
-import profilePhoto from "../IDphoto.PNG";
+import backgroundImage from "../background1.png";
 
 const unityDemoVideoHref =
   "https://www.bilibili.com/video/BV1gvXiBSEjx/?share_source=copy_web&vd_source=a2e61c6d61d8bfc0fad6ebcde9ac1d85";
@@ -12,9 +12,9 @@ const ue5DemoDesignHref = "/docs/ue5-open-world-city-level-demo.pdf";
 const profile = {
   name: "吴嘉宁",
   englishTitle: "Game Design Portfolio",
-  role: "系统策划 / 战斗拆解 / 关卡分析 / Unity 原型",
+  role: "系统策划 / 战斗拆解 / 关卡分析 / 关卡原型",
   intro:
-    "目前就读于南安普顿大学计算机科学本科，长期进行系统策划案撰写、商业游戏拆解分析与 Unity 玩法原型开发，希望进入游戏行业，从系统设计、玩法分析和原型验证的结合点创造真正对玩家体验有价值的内容。",
+    "目前就读于南安普顿大学计算机科学本科，进行过系统策划案撰写、商业游戏拆解分析与 Unity 玩法原型开发，希望进入游戏行业，创造真正对玩家体验有价值的内容。",
   education: "南安普顿大学 · 计算机科学本科\n2024.09 - 2027.06",
   targets: ["系统策划", "数值策划", "关卡策划", "战斗策划", "技术策划"],
   highlights: [
@@ -45,7 +45,7 @@ const projects = [
       "将策划思路转化为可运行 Demo，用于验证玩法节奏与系统可行性",
     ],
     links: [
-      { label: "游玩视频链接", href: unityDemoVideoHref },
+      { label: "视频演示链接", href: unityDemoVideoHref },
       { label: "策划案链接", href: unityDemoDesignHref },
     ],
   },
@@ -56,16 +56,16 @@ const projects = [
     type: "UE5 Demo",
     role: "独立完成",
     summary:
-      "一个以开放世界城市区域为核心的 UE5 灰盒关卡 Demo，围绕街区尺度、路径组织、探索引导与空间节奏进行验证，重点展示我将关卡设计思路落到可游玩场景中的能力。",
+      "一个以开放世界城市区域为核心的 UE5 灰盒关卡 Demo，围绕多样玩法路径、探索引导与空间节奏进行验证，重点展示我将关卡设计思路落到可游玩场景中的能力。",
     contributions: [
       "使用 UE5 进行城市灰盒搭建、空间迭代与关卡验证",
-      "独立梳理街区动线、地标引导与区域节奏分配",
-      "将设计文档、场景灰盒与演示视频结合，用于验证关卡方案可行性",
+      "梳理兴趣点游玩动线、地标引导与区域节奏分配",
+      "将设计文档落地至场景灰盒，结合演示视频，用于验证关卡方案可行性",
     ],
     links: [
       { label: "视频演示链接", href: ue5DemoVideoHref },
       { label: "Demo文件链接", href: ue5DemoFileHref },
-      { label: "设计文档站内查看", href: ue5DemoDesignHref },
+      { label: "设计文档链接", href: ue5DemoDesignHref },
     ],
   },
   {
@@ -143,7 +143,7 @@ const skillGroups = [
   {
     title: "系统策划与文档输出",
     items: [
-      "熟悉 MMORPG、二次元卡牌、FPS 等商业游戏的开发流程与商业模式",
+      "熟悉 MMORPG、ARPG、FPS 等商业游戏的开发流程与商业模式",
       "能够独立完成系统策划案、拆解文档、思维导图与基础表格方案",
       "了解关卡设计、敌人 AI、动作设计等相关内容",
     ],
@@ -160,7 +160,7 @@ const skillGroups = [
     title: "开发与原型能力",
     items: [
       "熟悉 Java、Python、C# 的基础开发流程",
-      "了解 Unity 与 UE5，具备 Unity Demo 实操经验",
+      "了解 Unity 与 UE5，具备 Unity 3D 和UE5 实操经验",
       "可使用 C# 在 Unity 中编写脚本并完成玩法原型验证",
     ],
   },
@@ -190,7 +190,7 @@ const sectionCards = [
     desc: "能把玩法目标、资源循环、奖励结构与体验节奏串联起来分析，而不只停留在感性评价。",
   },
   {
-    title: "表达力",
+    title: "表达能力",
     desc: "能把复杂内容整理成策划文档、脑图、表格与界面流程，方便团队理解与推进。",
   },
   {
@@ -208,8 +208,8 @@ const navItems = [
 
 const specCells = [
   { value: "02", label: "核心 Demo 项目" },
-  { value: "05", label: "站内策划 / 拆解文档" },
-  { value: "09", label: "长期深度体验游戏类型" },
+  { value: "05", label: "策划案 / 拆解文档" },
+  { value: "09", label: "深度体验游戏类型" },
 ];
 
 const spotlightProjects = projects.slice(0, 2);
@@ -329,7 +329,7 @@ function FooterGroup({ group }) {
 
 export default function App() {
   return (
-    <div className="site-shell">
+    <div className="site-shell" style={{ "--site-background": `url(${backgroundImage})` }}>
       <header className="topbar">
         <div className="topbar-inner">
           <a href="#home" className="brandmark">
@@ -354,7 +354,7 @@ export default function App() {
       <main>
         <section id="home" className="hero-band">
           <div className="hero-media">
-            <img src={profilePhoto} alt={profile.name} className="hero-photo" />
+            <img src={backgroundImage} alt="" className="hero-photo" />
             <div className="hero-overlay" />
           </div>
 
@@ -390,7 +390,7 @@ export default function App() {
                 <div className="caption-tag">PROFILE</div>
                 <h2>聚焦系统、关卡与可验证原型</h2>
                 <p className="body-copy">
-                  当前网站内容严格沿用 `resume.pdf` 数据，只重构为新的 Ferrari 风格界面表达。以下信息保持原始内容不变，强调更清晰的阅读节奏与作品导向。
+                  从用户游戏体验出发，分析不同设计的用意和效果
                 </p>
               </div>
 
@@ -435,7 +435,7 @@ export default function App() {
               <div className="caption-tag light-tag">SELECTED WORKS</div>
               <h2 className="on-light-heading">代表作品</h2>
               <p className="body-copy on-light-copy">
-                这些内容覆盖了我目前最核心的能力方向：系统策划、战斗与关卡拆解、动作表现分析，以及 Unity 原型开发。
+                这些内容覆盖了我目前最核心的能力方向：系统策划、战斗与关卡拆解、动作表现分析，以及游戏原型开发。
               </p>
             </div>
 
@@ -504,7 +504,7 @@ export default function App() {
                   从此之后游戏成为了我人生重要的一部分，他的美妙超过世界上任何一种娱乐，对我来说他就是真正的“第九艺术”。进入大学以后，我就打算毕业以后做游戏，后来我意识到其实并不一定要等毕业，我可以在空余时间开发，于是我就开始了自己的游戏开发之路。
                 </p>
                 <p className="body-copy">
-                  我不是最有天赋的那个，我大概率也不是最努力那个，但是我想我对游戏的热爱，可以排个第一。
+                  希望热爱和初心一直在，正在看这段话的你也是。
                 </p>
               </article>
 
@@ -530,7 +530,7 @@ export default function App() {
           <div className="section-shell cta-inner">
             <div className="section-copy-block">
               <div className="caption-tag">CONTACT</div>
-              <h2>如果你正在寻找一位既能从玩家体验出发做分析，也能执行想法到游戏原型中的人，欢迎联系我。</h2>
+              <h2>如果你正在寻找一位既能从玩家体验出发做分析，也能执行想法到游戏原型中的人，请联系我！</h2>
             </div>
 
             <div className="contact-grid">
