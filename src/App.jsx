@@ -3,6 +3,7 @@ import profilePhoto from "../IDphoto.PNG";
 
 const demoVideoHref =
   "https://www.bilibili.com/video/BV1nsocB5EY5/?share_source=copy_web&vd_source=a2e61c6d61d8bfc0fad6ebcde9ac1d85";
+const demoFileHref = "/docs/ue5-open-world-city-level-demo.pdf";
 const demoDesignCaseHref = "/docs/Demo%20DesignCase.pdf";
 
 const profile = {
@@ -32,26 +33,30 @@ const actions = [
 
 const projects = [
   {
-    title: "个人 ARPG Demo",
-    subtitle: "Unity 个人项目 / 第三人称俯视角ARPG",
+    title: "UE5 开放世界城市关卡设计 Demo（灰盒）",
+    subtitle: "UE5 个人项目 / 开放世界城市关卡设计 / 灰盒验证",
     period: "2026.02 - 开发中",
-    type: "Unity Demo",
+    type: "UE5 Demo",
     role: "独立完成",
     summary:
-      "一款第三人称俯视角即时战斗游戏。玩家操控一名狂战士和敌人进行战斗，有小兵战和boss战构成，重点展示我在玩法原型、战斗系统和交互逻辑上的落地能力。",
+      "一个以开放世界城市区域为核心的 UE5 灰盒关卡 Demo，围绕街区尺度、路径组织、探索引导与空间节奏进行验证，重点展示我将关卡设计思路落到可游玩场景中的能力。",
     contributions: [
-      "使用 Unity 2023、C#、Blender 进行原型开发与迭代",
-      "独立完成玩法雏形、敌我交互和战斗细节",
-      "将策划思路转化为可运行 Demo，用于验证玩法节奏与系统可行性",
+      "使用 UE5 进行城市灰盒搭建、空间迭代与关卡验证",
+      "独立梳理街区动线、地标引导与区域节奏分配",
+      "将设计文档、场景灰盒与演示视频结合，用于验证关卡方案可行性",
     ],
     links: [
       {
-        label: "策划案站内查看",
-        href: demoDesignCaseHref,
+        label: "文件链接",
+        href: demoFileHref,
       },
       {
-        label: "Bilibili 演示视频",
+        label: "演示视频链接",
         href: demoVideoHref,
+      },
+      {
+        label: "设计案站内查看",
+        href: demoDesignCaseHref,
       },
     ],
   },
