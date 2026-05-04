@@ -192,7 +192,7 @@ const gameExperience = [
   "燕云十六声（100h+）",
   "命运 2（120h+）",
   "三角洲行动（100h+）",
-  "皇室战争（200h+）12000皇冠",
+  "皇室战争（200h+）13000皇冠",
   "黑神话：悟空（50h）",
   "王国保卫战 / Thronefall / 战争传说 / 王者荣耀 等",
 ];
@@ -218,6 +218,18 @@ const sectionCards = [
   },
 ];
 
+const topTabs = [
+  { label: "作品", href: "#works", active: true },
+  { label: "能力", href: "#skills", badge: "NEW" },
+  { label: "联系", href: "#contact", badge: "NEW" },
+];
+
+const searchSegments = [
+  { label: "目标岗位", value: profile.targets.slice(0, 3).join(" / ") },
+  { label: "教育背景", value: "南安普顿大学 · 计算机科学本科" },
+  { label: "代表项目", value: "Unity ARPG / UE5 城市关卡灰盒" },
+];
+
 function LinkButton({ item }) {
   return (
     <a
@@ -225,10 +237,69 @@ function LinkButton({ item }) {
       target={item.external ? "_blank" : undefined}
       rel={item.external ? "noreferrer" : undefined}
       download={item.download}
-      className={item.primary ? "button button-primary" : "button button-secondary"}
+      className={item.primary ? "button-primary" : "button-secondary"}
     >
       {item.label}
     </a>
+  );
+}
+
+function TopTab({ item }) {
+  return (
+    <a href={item.href} className={item.active ? "product-tab is-active" : "product-tab"}>
+      <span className="product-tab-icon" aria-hidden="true" />
+      <span>{item.label}</span>
+      {item.badge ? <span className="new-tag">{item.badge}</span> : null}
+    </a>
+  );
+}
+
+function SearchSegment({ item, isLast }) {
+  return (
+    <div className={`search-segment${isLast ? " is-last" : ""}`}>
+      <div className="search-label">{item.label}</div>
+      <div className="search-value">{item.value}</div>
+    </div>
+  );
+}
+
+function ProjectCard({ project }) {
+  return (
+    <article className="project-card">
+      <div className="project-card-head">
+        <div>
+          <div className="project-type">{project.type}</div>
+          <h3>{project.title}</h3>
+          <div className="project-subtitle">{project.subtitle}</div>
+        </div>
+        <div className="role-badge">{project.role}</div>
+      </div>
+
+      <div className="project-period">{project.period}</div>
+      <p className="body-copy">{project.summary}</p>
+
+      <div className="contribution-list">
+        {project.contributions.map((item) => (
+          <div key={item} className="soft-chip">
+            {item}
+          </div>
+        ))}
+      </div>
+
+      <div className="link-row">
+        {project.links.map((link) => (
+          <a
+            key={`${project.title}-${link.href}`}
+            href={link.href}
+            target={link.href.startsWith("http") ? "_blank" : undefined}
+            rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+            className="inline-link"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </article>
   );
 }
 
@@ -252,39 +323,55 @@ function ContactCard({ item }) {
 
 export default function App() {
   return (
-    <div className="page-shell">
-      <div className="page-glow page-glow-left" />
-      <div className="page-glow page-glow-right" />
+    <div className="site-shell">
+      <header className="topbar">
+        <div className="topbar-inner">
+          <a href="#home" className="brandmark">
+            <span className="brandmark-dot" aria-hidden="true" />
+            <span>{profile.englishTitle}</span>
+          </a>
 
-      <div className="site-wrap">
-        <header className="topbar">
-          <div className="brand-block">
-            <div className="eyebrow">{profile.englishTitle}</div>
-            <div className="brand-name">{profile.name}</div>
-            <div className="brand-role">{profile.role}</div>
-          </div>
-
-          <div className="topbar-photo-wrap" aria-hidden="true">
-            <img className="topbar-photo" src={profilePhoto} alt="" />
-          </div>
-
-          <nav className="topnav">
-            <a href="#home">首页</a>
-            <a href="#works">代表作品</a>
-            <a href="#skills">能力优势</a>
-            <a href="#about">关于我</a>
-            <a href="#contact">联系方式</a>
+          <nav className="product-nav" aria-label="Primary">
+            {topTabs.map((item) => (
+              <TopTab key={item.label} item={item} />
+            ))}
           </nav>
-        </header>
 
-        <main>
-          <section id="home" className="hero-grid">
-            <div className="panel hero-panel">
+          <div className="utility-nav">
+            <a href="/resume.pdf" className="utility-link" target="_blank" rel="noreferrer">
+              简历
+            </a>
+            <a href="#contact" className="account-pill">
+              联系我
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main className="page-main">
+        <section id="home" className="hero-section">
+          <div className="search-pill">
+            {searchSegments.map((item, index) => (
+              <SearchSegment
+                key={item.label}
+                item={item}
+                isLast={index === searchSegments.length - 1}
+              />
+            ))}
+            <a href="#works" className="search-orb" aria-label="查看代表作品">
+              <span className="search-orb-core" />
+            </a>
+          </div>
+
+          <div className="hero-layout">
+            <div className="hero-copy-wrap">
+              <div className="section-tag">Game Design Portfolio</div>
               <h1>
-                我把“喜欢玩游戏”
-                <span>做成了可展示的作品和能力</span>
+                把游戏体验
+                <br />
+                转成可验证的策划与作品
               </h1>
-              <p className="hero-copy">{profile.intro}</p>
+              <p className="body-copy hero-copy">{profile.intro}</p>
 
               <div className="button-row">
                 {actions.map((item) => (
@@ -294,172 +381,150 @@ export default function App() {
 
               <div className="highlight-grid">
                 {profile.highlights.map((item) => (
-                  <div key={item} className="mini-card">
+                  <div key={item} className="soft-panel">
                     {item}
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="side-stack">
-              <div className="panel">
-                <div className="section-label">教育经历</div>
-                <div className="side-strong">{profile.education}</div>
+            <aside className="hero-aside">
+              <div className="profile-card">
+                <img className="profile-photo" src={profilePhoto} alt={profile.name} />
+                <div className="profile-meta">
+                  <div className="profile-name">{profile.name}</div>
+                  <div className="profile-role">{profile.role}</div>
+                </div>
               </div>
 
-              <div className="panel">
-                <div className="section-label">目标岗位</div>
-                <div className="tag-list">
+              <div className="info-card">
+                <div className="micro-label">教育背景</div>
+                <div className="info-strong">{profile.education}</div>
+              </div>
+
+              <div className="info-card">
+                <div className="micro-label">目标岗位</div>
+                <div className="tag-row">
                   {profile.targets.map((item) => (
-                    <div key={item} className="tag-item">
+                    <div key={item} className="tag-pill">
                       {item}
                     </div>
                   ))}
                 </div>
               </div>
+            </aside>
+          </div>
+        </section>
 
-              <div className="panel">
-                <div className="section-label">一句话总结</div>
-                <p className="muted-copy">
-                  擅长把玩家体验拆成系统逻辑，把设计思路落成文档，再把关键玩法做成
-                  Unity 原型。
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section className="three-up">
+        <section className="section-block">
+          <div className="three-up">
             {sectionCards.map((item) => (
-              <article key={item.title} className="panel">
-                <h3>{item.title}</h3>
-                <p className="muted-copy">{item.desc}</p>
+              <article key={item.title} className="editorial-card">
+                <div className="micro-label">{item.title}</div>
+                <p className="body-copy">{item.desc}</p>
               </article>
             ))}
-          </section>
+          </div>
+        </section>
 
-          <section id="works" className="section-block">
-            <div className="section-label">Selected Works</div>
+        <section id="works" className="section-block">
+          <div className="section-head">
+            <div className="section-tag">Selected Works</div>
             <h2>代表作品</h2>
-            <p className="section-copy">
-              这些内容覆盖了我目前最核心的能力方向：系统策划、战斗与关卡拆解、动作表现分析，以及 Unity 原型开发。
+            <p className="body-copy section-copy">
+              这些内容覆盖了我目前最核心的能力方向：系统策划、战斗与关卡拆解、动作表现分析，以及
+              Unity 原型开发。
             </p>
+          </div>
 
-            <div className="project-grid">
-              {projects.map((project) => (
-                <article key={project.title} className="panel project-card">
-                  <div className="project-head">
-                    <div>
-                      <div className="project-type">{project.type}</div>
-                      <h3>{project.title}</h3>
-                      <div className="project-subtitle">{project.subtitle}</div>
-                    </div>
-                    <div className="role-badge">{project.role}</div>
-                  </div>
+          <div className="project-grid">
+            {projects.map((project) => (
+              <ProjectCard key={project.title} project={project} />
+            ))}
+          </div>
+        </section>
 
-                  <div className="project-period">{project.period}</div>
-                  <p className="muted-copy">{project.summary}</p>
-
-                  <div className="bullet-list">
-                    {project.contributions.map((item) => (
-                      <div key={item} className="mini-card">
-                        {item}
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="link-row">
-                    {project.links.map((link) => (
-                      <a
-                        key={`${project.title}-${link.href}`}
-                        href={link.href}
-                        target={link.href.startsWith("http") ? "_blank" : undefined}
-                        rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                        className="inline-link"
-                      >
-                        {link.label}
-                      </a>
-                    ))}
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          <section id="skills" className="section-block">
-            <div className="section-label">Skills</div>
+        <section id="skills" className="section-block">
+          <div className="section-head">
+            <div className="section-tag">Skills</div>
             <h2>能力优势</h2>
+          </div>
 
-            <div className="skill-grid">
-              {skillGroups.map((group) => (
-                <article key={group.title} className="panel">
-                  <h3>{group.title}</h3>
-                  <div className="bullet-list">
-                    {group.items.map((item) => (
-                      <div key={item} className="mini-card">
-                        {item}
-                      </div>
-                    ))}
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
+          <div className="skill-grid">
+            {skillGroups.map((group) => (
+              <article key={group.title} className="editorial-card">
+                <h3>{group.title}</h3>
+                <div className="stack-list">
+                  {group.items.map((item) => (
+                    <div key={item} className="body-line">
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
 
-          <section id="about" className="about-grid">
-            <article className="panel">
-              <div className="section-label">About Me</div>
-              <h2>关于我</h2>
-              <p className="section-copy">
+        <section id="about" className="section-block about-section">
+          <div className="section-head">
+            <div className="section-tag">About</div>
+            <h2>关于我</h2>
+          </div>
+
+          <div className="about-grid">
+            <article className="editorial-card longform-card">
+              <p className="body-copy">
                 我是吴嘉宁，21 岁。相比只停留在“喜欢玩游戏”，我更习惯把游戏体验转化为可复用的输出：文档、流程、表格，以及能够验证想法的玩法原型。
               </p>
-              <p className="section-copy">
+              <p className="body-copy">
                 我长期关注 ARPG、MMORPG、FPS、塔防与叙事驱动类游戏，愿意投入大量时间研究新作、复盘机制并整理设计思路，也希望在职业路径中持续深化这件事。
               </p>
-              <p className="section-copy">
-                一些闲聊：我的游戏生涯开始于小学一年级，那时我表哥在电脑上玩4399小游戏。随着智能手机普及，我也在手机上接触了植物大战僵尸，汤姆猫等等有趣的游戏。 随后的日子里，我在闲暇之余便会打开手机搜搜新的游戏，整个小学时期我至少已经玩过并通关50款游戏。
+              <p className="body-copy">
+                一些闲聊：我的游戏生涯开始于小学一年级，那时我表哥在电脑上玩4399小游戏。随着智能手机普及，我也在手机上接触了植物大战僵尸，汤姆猫等等有趣的游戏。随后的日子里，我在闲暇之余便会打开手机搜搜新的游戏，整个小学时期我至少已经玩过并通关50款游戏。
               </p>
-              <p className="section-copy">
-                从此之后游戏成为了我人生重要的一部分，他的美妙超过世界上任何一种娱乐，对我来说他就是真正的“第九艺术”。进入大学以后，我就打算毕业以后做游戏， 后来我意识到其实并不一定要等毕业，我可以在空余时间开发，于是我就开始了自己的游戏开发之路。
+              <p className="body-copy">
+                从此之后游戏成为了我人生重要的一部分，他的美妙超过世界上任何一种娱乐，对我来说他就是真正的“第九艺术”。进入大学以后，我就打算毕业以后做游戏，后来我意识到其实并不一定要等毕业，我可以在空余时间开发，于是我就开始了自己的游戏开发之路。
               </p>
-              <p className="section-copy">
+              <p className="body-copy">
                 我不是最有天赋的那个，我大概率也不是最努力那个，但是我想我对游戏的热爱，可以排个第一。
               </p>
             </article>
 
-            <article className="panel">
-              <div className="section-label">Player Background</div>
-              <h2>游戏经历</h2>
-              <p className="section-copy">
+            <article className="editorial-card">
+              <div className="micro-label">Player Background</div>
+              <h3>游戏经历</h3>
+              <p className="body-copy">
                 累计体验近百款游戏。相比单纯通关，我更关注作品背后的系统结构、关卡节奏控制、玩法核心与商业定位，这也是我做拆解和策划案的重要基础。
               </p>
 
-              <div className="game-grid">
+              <div className="experience-grid">
                 {gameExperience.map((game) => (
-                  <div key={game} className="tag-item">
+                  <div key={game} className="city-link-block">
                     {game}
                   </div>
                 ))}
               </div>
             </article>
-          </section>
+          </div>
+        </section>
 
-          <section id="contact" className="section-block">
-            <div className="panel contact-panel">
-              <div className="section-label">Contact</div>
-              <h2>联系我</h2>
-              <p className="section-copy">
-                如果你正在寻找一位既能从玩家体验出发做分析，也能执行想法到游戏原型中的人，欢迎联系我。
-              </p>
+        <section id="contact" className="section-block">
+          <div className="section-head">
+            <div className="section-tag">Contact</div>
+            <h2>联系我</h2>
+            <p className="body-copy section-copy">
+              如果你正在寻找一位既能从玩家体验出发做分析，也能执行想法到游戏原型中的人，欢迎联系我。
+            </p>
+          </div>
 
-              <div className="contact-grid">
-                {contacts.map((item) => (
-                  <ContactCard key={item.label} item={item} />
-                ))}
-              </div>
-            </div>
-          </section>
-        </main>
-      </div>
+          <div className="contact-grid">
+            {contacts.map((item) => (
+              <ContactCard key={item.label} item={item} />
+            ))}
+          </div>
+        </section>
+      </main>
     </div>
   );
 }
