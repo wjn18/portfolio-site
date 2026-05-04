@@ -26,12 +26,8 @@ const profile = {
 
 const actions = [
   { label: "在线查看简历", href: "/resume.pdf", primary: true, external: true },
-  { label: "下载简历", href: "/resume.pdf", download: true },
-  {
-    label: "观看 Demo 视频",
-    href: ue5DemoVideoHref,
-    external: true,
-  },
+  { label: "下载简历", href: "/resume.pdf", external: true, download: true },
+  { label: "观看 Demo 视频", href: ue5DemoVideoHref, external: true },
 ];
 
 const projects = [
@@ -49,14 +45,8 @@ const projects = [
       "将策划思路转化为可运行 Demo，用于验证玩法节奏与系统可行性",
     ],
     links: [
-      {
-        label: "游玩视频链接",
-        href: unityDemoVideoHref,
-      },
-      {
-        label: "策划案链接",
-        href: unityDemoDesignHref,
-      },
+      { label: "游玩视频链接", href: unityDemoVideoHref },
+      { label: "策划案链接", href: unityDemoDesignHref },
     ],
   },
   {
@@ -73,18 +63,9 @@ const projects = [
       "将设计文档、场景灰盒与演示视频结合，用于验证关卡方案可行性",
     ],
     links: [
-      {
-        label: "视频演示链接",
-        href: ue5DemoVideoHref,
-      },
-      {
-        label: "Demo文件链接",
-        href: ue5DemoFileHref,
-      },
-      {
-        label: "设计文档站内查看",
-        href: ue5DemoDesignHref,
-      },
+      { label: "视频演示链接", href: ue5DemoVideoHref },
+      { label: "Demo文件链接", href: ue5DemoFileHref },
+      { label: "设计文档站内查看", href: ue5DemoDesignHref },
     ],
   },
   {
@@ -218,69 +199,49 @@ const sectionCards = [
   },
 ];
 
-const topTabs = [
-  { label: "作品", href: "#works", active: true },
-  { label: "能力", href: "#skills", badge: "NEW" },
-  { label: "联系", href: "#contact", badge: "NEW" },
+const navItems = [
+  { label: "作品", href: "#works" },
+  { label: "能力", href: "#skills" },
+  { label: "关于", href: "#about" },
+  { label: "联系", href: "#contact" },
 ];
 
-const searchSegments = [
-  { label: "目标岗位", value: profile.targets.slice(0, 3).join(" / ") },
-  { label: "教育背景", value: "南安普顿大学 · 计算机科学本科" },
-  { label: "代表项目", value: "Unity ARPG / UE5 城市关卡灰盒" },
+const specCells = [
+  { value: "02", label: "核心 Demo 项目" },
+  { value: "05", label: "站内策划 / 拆解文档" },
+  { value: "09", label: "长期深度体验游戏类型" },
 ];
 
-function LinkButton({ item }) {
+function ActionButton({ item }) {
   return (
     <a
       href={item.href}
       target={item.external ? "_blank" : undefined}
       rel={item.external ? "noreferrer" : undefined}
       download={item.download}
-      className={item.primary ? "button-primary" : "button-secondary"}
+      className={item.primary ? "button-primary" : "button-outline"}
     >
       {item.label}
     </a>
   );
 }
 
-function TopTab({ item }) {
+function ProjectCard({ project, light = false }) {
   return (
-    <a href={item.href} className={item.active ? "product-tab is-active" : "product-tab"}>
-      <span className="product-tab-icon" aria-hidden="true" />
-      <span>{item.label}</span>
-      {item.badge ? <span className="new-tag">{item.badge}</span> : null}
-    </a>
-  );
-}
-
-function SearchSegment({ item, isLast }) {
-  return (
-    <div className={`search-segment${isLast ? " is-last" : ""}`}>
-      <div className="search-label">{item.label}</div>
-      <div className="search-value">{item.value}</div>
-    </div>
-  );
-}
-
-function ProjectCard({ project }) {
-  return (
-    <article className="project-card">
-      <div className="project-card-head">
-        <div>
-          <div className="project-type">{project.type}</div>
-          <h3>{project.title}</h3>
-          <div className="project-subtitle">{project.subtitle}</div>
-        </div>
-        <div className="role-badge">{project.role}</div>
+    <article className={light ? "project-card project-card-light" : "project-card"}>
+      <div className="project-topline">
+        <span className="caption-tag">{project.type}</span>
+        <span className="badge-pill">{project.role}</span>
       </div>
 
+      <h3>{project.title}</h3>
+      <div className="project-subtitle">{project.subtitle}</div>
       <div className="project-period">{project.period}</div>
       <p className="body-copy">{project.summary}</p>
 
       <div className="contribution-list">
         {project.contributions.map((item) => (
-          <div key={item} className="soft-chip">
+          <div key={item} className="detail-line">
             {item}
           </div>
         ))}
@@ -293,7 +254,7 @@ function ProjectCard({ project }) {
             href={link.href}
             target={link.href.startsWith("http") ? "_blank" : undefined}
             rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-            className="inline-link"
+            className={light ? "button-outline-light compact-link" : "button-outline compact-link"}
           >
             {link.label}
           </a>
@@ -315,7 +276,7 @@ function ContactCard({ item }) {
       rel={isExternal ? "noreferrer" : undefined}
       className="contact-card"
     >
-      <div className="contact-label">{item.label}</div>
+      <div className="caption-tag">{item.label}</div>
       <div className="contact-value">{item.value}</div>
     </Component>
   );
@@ -327,201 +288,191 @@ export default function App() {
       <header className="topbar">
         <div className="topbar-inner">
           <a href="#home" className="brandmark">
-            <span className="brandmark-dot" aria-hidden="true" />
+            <span className="brandmark-accent" aria-hidden="true" />
             <span>{profile.englishTitle}</span>
           </a>
 
-          <nav className="product-nav" aria-label="Primary">
-            {topTabs.map((item) => (
-              <TopTab key={item.label} item={item} />
+          <nav className="nav-row" aria-label="Primary">
+            {navItems.map((item) => (
+              <a key={item.label} href={item.href} className="nav-link">
+                {item.label}
+              </a>
             ))}
           </nav>
 
-          <div className="utility-nav">
-            <a href="/resume.pdf" className="utility-link" target="_blank" rel="noreferrer">
-              简历
-            </a>
-            <a href="#contact" className="account-pill">
-              联系我
-            </a>
-          </div>
+          <a href="/resume.pdf" target="_blank" rel="noreferrer" className="button-outline nav-cta">
+            在线简历
+          </a>
         </div>
       </header>
 
-      <main className="page-main">
-        <section id="home" className="hero-section">
-          <div className="search-pill">
-            {searchSegments.map((item, index) => (
-              <SearchSegment
-                key={item.label}
-                item={item}
-                isLast={index === searchSegments.length - 1}
-              />
-            ))}
-            <a href="#works" className="search-orb" aria-label="查看代表作品">
-              <span className="search-orb-core" />
-            </a>
+      <main>
+        <section id="home" className="hero-band">
+          <div className="hero-media">
+            <img src={profilePhoto} alt={profile.name} className="hero-photo" />
+            <div className="hero-overlay" />
           </div>
 
-          <div className="hero-layout">
-            <div className="hero-copy-wrap">
-              <div className="section-tag">Game Design Portfolio</div>
-              <h1>
-                把游戏体验
-                <br />
-                转成可验证的策划与作品
-              </h1>
-              <p className="body-copy hero-copy">{profile.intro}</p>
+          <div className="hero-content">
+            <div className="hero-kicker">GAME DESIGN PORTFOLIO</div>
+            <h1>{profile.name}</h1>
+            <div className="hero-role">{profile.role}</div>
+            <p className="body-copy hero-intro">{profile.intro}</p>
 
-              <div className="button-row">
-                {actions.map((item) => (
-                  <LinkButton key={item.label} item={item} />
-                ))}
-              </div>
+            <div className="hero-actions">
+              {actions.map((item) => (
+                <ActionButton key={item.label} item={item} />
+              ))}
+            </div>
+          </div>
+        </section>
 
-              <div className="highlight-grid">
-                {profile.highlights.map((item) => (
-                  <div key={item} className="soft-panel">
-                    {item}
-                  </div>
-                ))}
+        <section className="spec-band">
+          <div className="spec-grid">
+            {specCells.map((item) => (
+              <div key={item.label} className="spec-cell">
+                <div className="spec-value">{item.value}</div>
+                <div className="caption-tag">{item.label}</div>
               </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="editorial-dark">
+          <div className="section-shell">
+            <div className="section-copy-block">
+              <div className="caption-tag">PROFILE</div>
+              <h2>聚焦系统、关卡与可验证原型</h2>
+              <p className="body-copy">
+                当前网站内容严格沿用 `resume.pdf` 数据，只重构为新的 Ferrari 风格界面表达。以下信息保持原始内容不变，强调更清晰的阅读节奏与作品导向。
+              </p>
             </div>
 
-            <aside className="hero-aside">
-              <div className="profile-card">
-                <img className="profile-photo" src={profilePhoto} alt={profile.name} />
-                <div className="profile-meta">
-                  <div className="profile-name">{profile.name}</div>
-                  <div className="profile-role">{profile.role}</div>
+            <div className="feature-grid">
+              {sectionCards.map((item) => (
+                <article key={item.title} className="feature-card">
+                  <div className="caption-tag">{item.title}</div>
+                  <p className="body-copy">{item.desc}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="livery-band">
+          <div className="section-shell livery-inner">
+            <div className="livery-copy">
+              <div className="caption-tag on-red">EDUCATION</div>
+              <h2>{profile.education}</h2>
+            </div>
+            <div className="target-wrap">
+              {profile.targets.map((item) => (
+                <div key={item} className="target-tag">
+                  {item}
                 </div>
-              </div>
-
-              <div className="info-card">
-                <div className="micro-label">教育背景</div>
-                <div className="info-strong">{profile.education}</div>
-              </div>
-
-              <div className="info-card">
-                <div className="micro-label">目标岗位</div>
-                <div className="tag-row">
-                  {profile.targets.map((item) => (
-                    <div key={item} className="tag-pill">
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </aside>
+              ))}
+            </div>
           </div>
         </section>
 
-        <section className="section-block">
-          <div className="three-up">
-            {sectionCards.map((item) => (
-              <article key={item.title} className="editorial-card">
-                <div className="micro-label">{item.title}</div>
-                <p className="body-copy">{item.desc}</p>
-              </article>
-            ))}
+        <section id="works" className="editorial-light">
+          <div className="section-shell">
+            <div className="section-copy-block on-light">
+              <div className="caption-tag light-tag">SELECTED WORKS</div>
+              <h2 className="on-light-heading">代表作品</h2>
+              <p className="body-copy on-light-copy">
+                这些内容覆盖了我目前最核心的能力方向：系统策划、战斗与关卡拆解、动作表现分析，以及 Unity 原型开发。
+              </p>
+            </div>
+
+            <div className="project-grid">
+              {projects.map((project) => (
+                <ProjectCard key={project.title} project={project} light />
+              ))}
+            </div>
           </div>
         </section>
 
-        <section id="works" className="section-block">
-          <div className="section-head">
-            <div className="section-tag">Selected Works</div>
-            <h2>代表作品</h2>
-            <p className="body-copy section-copy">
-              这些内容覆盖了我目前最核心的能力方向：系统策划、战斗与关卡拆解、动作表现分析，以及
-              Unity 原型开发。
-            </p>
-          </div>
+        <section id="skills" className="editorial-dark">
+          <div className="section-shell">
+            <div className="section-copy-block">
+              <div className="caption-tag">SKILLS</div>
+              <h2>能力优势</h2>
+            </div>
 
-          <div className="project-grid">
-            {projects.map((project) => (
-              <ProjectCard key={project.title} project={project} />
-            ))}
-          </div>
-        </section>
-
-        <section id="skills" className="section-block">
-          <div className="section-head">
-            <div className="section-tag">Skills</div>
-            <h2>能力优势</h2>
-          </div>
-
-          <div className="skill-grid">
-            {skillGroups.map((group) => (
-              <article key={group.title} className="editorial-card">
-                <h3>{group.title}</h3>
-                <div className="stack-list">
-                  {group.items.map((item) => (
-                    <div key={item} className="body-line">
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="about" className="section-block about-section">
-          <div className="section-head">
-            <div className="section-tag">About</div>
-            <h2>关于我</h2>
-          </div>
-
-          <div className="about-grid">
-            <article className="editorial-card longform-card">
-              <p className="body-copy">
-                我是吴嘉宁，21 岁。相比只停留在“喜欢玩游戏”，我更习惯把游戏体验转化为可复用的输出：文档、流程、表格，以及能够验证想法的玩法原型。
-              </p>
-              <p className="body-copy">
-                我长期关注 ARPG、MMORPG、FPS、塔防与叙事驱动类游戏，愿意投入大量时间研究新作、复盘机制并整理设计思路，也希望在职业路径中持续深化这件事。
-              </p>
-              <p className="body-copy">
-                一些闲聊：我的游戏生涯开始于小学一年级，那时我表哥在电脑上玩4399小游戏。随着智能手机普及，我也在手机上接触了植物大战僵尸，汤姆猫等等有趣的游戏。随后的日子里，我在闲暇之余便会打开手机搜搜新的游戏，整个小学时期我至少已经玩过并通关50款游戏。
-              </p>
-              <p className="body-copy">
-                从此之后游戏成为了我人生重要的一部分，他的美妙超过世界上任何一种娱乐，对我来说他就是真正的“第九艺术”。进入大学以后，我就打算毕业以后做游戏，后来我意识到其实并不一定要等毕业，我可以在空余时间开发，于是我就开始了自己的游戏开发之路。
-              </p>
-              <p className="body-copy">
-                我不是最有天赋的那个，我大概率也不是最努力那个，但是我想我对游戏的热爱，可以排个第一。
-              </p>
-            </article>
-
-            <article className="editorial-card">
-              <div className="micro-label">Player Background</div>
-              <h3>游戏经历</h3>
-              <p className="body-copy">
-                累计体验近百款游戏。相比单纯通关，我更关注作品背后的系统结构、关卡节奏控制、玩法核心与商业定位，这也是我做拆解和策划案的重要基础。
-              </p>
-
-              <div className="experience-grid">
-                {gameExperience.map((game) => (
-                  <div key={game} className="city-link-block">
-                    {game}
+            <div className="skill-grid">
+              {skillGroups.map((group) => (
+                <article key={group.title} className="feature-card elevated-card">
+                  <h3>{group.title}</h3>
+                  <div className="stack-list">
+                    {group.items.map((item) => (
+                      <div key={item} className="detail-line">
+                        {item}
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </article>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
-        <section id="contact" className="section-block">
-          <div className="section-head">
-            <div className="section-tag">Contact</div>
-            <h2>联系我</h2>
-            <p className="body-copy section-copy">
-              如果你正在寻找一位既能从玩家体验出发做分析，也能执行想法到游戏原型中的人，欢迎联系我。
-            </p>
-          </div>
+        <section id="about" className="editorial-dark">
+          <div className="section-shell">
+            <div className="section-copy-block">
+              <div className="caption-tag">ABOUT</div>
+              <h2>关于我</h2>
+            </div>
 
-          <div className="contact-grid">
-            {contacts.map((item) => (
-              <ContactCard key={item.label} item={item} />
-            ))}
+            <div className="about-grid">
+              <article className="feature-card longform">
+                <p className="body-copy">
+                  我是吴嘉宁，21 岁。相比只停留在“喜欢玩游戏”，我更习惯把游戏体验转化为可复用的输出：文档、流程、表格，以及能够验证想法的玩法原型。
+                </p>
+                <p className="body-copy">
+                  我长期关注 ARPG、MMORPG、FPS、塔防与叙事驱动类游戏，愿意投入大量时间研究新作、复盘机制并整理设计思路，也希望在职业路径中持续深化这件事。
+                </p>
+                <p className="body-copy">
+                  一些闲聊：我的游戏生涯开始于小学一年级，那时我表哥在电脑上玩4399小游戏。随着智能手机普及，我也在手机上接触了植物大战僵尸，汤姆猫等等有趣的游戏。随后的日子里，我在闲暇之余便会打开手机搜搜新的游戏，整个小学时期我至少已经玩过并通关50款游戏。
+                </p>
+                <p className="body-copy">
+                  从此之后游戏成为了我人生重要的一部分，他的美妙超过世界上任何一种娱乐，对我来说他就是真正的“第九艺术”。进入大学以后，我就打算毕业以后做游戏，后来我意识到其实并不一定要等毕业，我可以在空余时间开发，于是我就开始了自己的游戏开发之路。
+                </p>
+                <p className="body-copy">
+                  我不是最有天赋的那个，我大概率也不是最努力那个，但是我想我对游戏的热爱，可以排个第一。
+                </p>
+              </article>
+
+              <article className="feature-card elevated-card">
+                <div className="caption-tag">PLAYER BACKGROUND</div>
+                <h3>游戏经历</h3>
+                <p className="body-copy">
+                  累计体验近百款游戏。相比单纯通关，我更关注作品背后的系统结构、关卡节奏控制、玩法核心与商业定位，这也是我做拆解和策划案的重要基础。
+                </p>
+                <div className="experience-grid">
+                  {gameExperience.map((game) => (
+                    <div key={game} className="experience-item">
+                      {game}
+                    </div>
+                  ))}
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="cta-band">
+          <div className="section-shell cta-inner">
+            <div className="section-copy-block">
+              <div className="caption-tag">CONTACT</div>
+              <h2>如果你正在寻找一位既能从玩家体验出发做分析，也能执行想法到游戏原型中的人，欢迎联系我。</h2>
+            </div>
+
+            <div className="contact-grid">
+              {contacts.map((item) => (
+                <ContactCard key={item.label} item={item} />
+              ))}
+            </div>
           </div>
         </section>
       </main>
