@@ -212,6 +212,30 @@ const specCells = [
   { value: "09", label: "长期深度体验游戏类型" },
 ];
 
+const spotlightProjects = projects.slice(0, 2);
+const archiveProjects = projects.slice(2);
+
+const footerGroups = [
+  {
+    title: "作品入口",
+    links: [
+      { label: "Unity3D ARPG 战斗系统 Demo", href: unityDemoDesignHref },
+      { label: "UE5 开放世界城市关卡设计 Demo（灰盒）", href: ue5DemoDesignHref },
+      { label: "在线查看简历", href: "/resume.pdf" },
+    ],
+  },
+  {
+    title: "能力方向",
+    links: profile.targets.map((item) => ({ label: item, href: "#skills" })),
+  },
+  {
+    title: "联系方式",
+    links: contacts
+      .filter((item) => item.href)
+      .map((item) => ({ label: `${item.label} · ${item.value}`, href: item.href })),
+  },
+];
+
 function ActionButton({ item }) {
   return (
     <a
@@ -282,6 +306,27 @@ function ContactCard({ item }) {
   );
 }
 
+function FooterGroup({ group }) {
+  return (
+    <div className="footer-group">
+      <div className="caption-tag">{group.title}</div>
+      <div className="footer-link-list">
+        {group.links.map((item) => (
+          <a
+            key={`${group.title}-${item.label}`}
+            href={item.href}
+            target={item.href.startsWith("http") ? "_blank" : undefined}
+            rel={item.href.startsWith("http") ? "noreferrer" : undefined}
+            className="footer-link"
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <div className="site-shell">
@@ -340,12 +385,21 @@ export default function App() {
 
         <section className="editorial-dark">
           <div className="section-shell">
-            <div className="section-copy-block">
-              <div className="caption-tag">PROFILE</div>
-              <h2>聚焦系统、关卡与可验证原型</h2>
-              <p className="body-copy">
-                当前网站内容严格沿用 `resume.pdf` 数据，只重构为新的 Ferrari 风格界面表达。以下信息保持原始内容不变，强调更清晰的阅读节奏与作品导向。
-              </p>
+            <div className="profile-split">
+              <div className="section-copy-block">
+                <div className="caption-tag">PROFILE</div>
+                <h2>聚焦系统、关卡与可验证原型</h2>
+                <p className="body-copy">
+                  当前网站内容严格沿用 `resume.pdf` 数据，只重构为新的 Ferrari 风格界面表达。以下信息保持原始内容不变，强调更清晰的阅读节奏与作品导向。
+                </p>
+              </div>
+
+              <article className="profile-dossier elevated-card">
+                <div className="caption-tag">DOSSIER</div>
+                <div className="dossier-name">{profile.name}</div>
+                <div className="dossier-role">{profile.role}</div>
+                <div className="dossier-copy body-copy">{profile.education}</div>
+              </article>
             </div>
 
             <div className="feature-grid">
@@ -385,8 +439,19 @@ export default function App() {
               </p>
             </div>
 
-            <div className="project-grid">
-              {projects.map((project) => (
+            <div className="spotlight-grid">
+              {spotlightProjects.map((project) => (
+                <ProjectCard key={project.title} project={project} light />
+              ))}
+            </div>
+
+            <div className="archive-head">
+              <div className="caption-tag light-tag">ARCHIVE</div>
+              <h3 className="archive-title">策划案与拆解文档</h3>
+            </div>
+
+            <div className="project-grid archive-grid">
+              {archiveProjects.map((project) => (
                 <ProjectCard key={project.title} project={project} light />
               ))}
             </div>
@@ -475,6 +540,14 @@ export default function App() {
             </div>
           </div>
         </section>
+
+        <footer className="footer-dark">
+          <div className="section-shell footer-grid">
+            {footerGroups.map((group) => (
+              <FooterGroup key={group.title} group={group} />
+            ))}
+          </div>
+        </footer>
       </main>
     </div>
   );

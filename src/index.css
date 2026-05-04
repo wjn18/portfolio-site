@@ -287,7 +287,8 @@ h3 {
 .editorial-dark,
 .editorial-light,
 .livery-band,
-.cta-band {
+.cta-band,
+.footer-dark {
   padding: 96px 0;
 }
 
@@ -312,6 +313,13 @@ h3 {
 
 .section-copy-block {
   max-width: 760px;
+}
+
+.profile-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.7fr);
+  gap: 48px;
+  align-items: end;
 }
 
 .feature-grid,
@@ -344,6 +352,33 @@ h3 {
 
 .elevated-card {
   background: var(--canvas-elevated);
+}
+
+.profile-dossier {
+  border: 1px solid var(--hairline);
+  padding: 32px;
+}
+
+.dossier-name {
+  margin-top: 16px;
+  color: var(--ink);
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.36px;
+}
+
+.dossier-role {
+  margin-top: 16px;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.dossier-copy {
+  margin-top: 24px;
+  white-space: pre-line;
 }
 
 .livery-band {
@@ -398,6 +433,13 @@ h3 {
 .project-grid {
   margin-top: 48px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.spotlight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 48px;
 }
 
 .project-card-light {
@@ -479,6 +521,25 @@ h3 {
   padding: 13px 20px;
 }
 
+.archive-head {
+  margin-top: 96px;
+  padding-top: 24px;
+  border-top: 1px solid var(--hairline-on-light);
+}
+
+.archive-title {
+  margin-top: 16px;
+  color: var(--body-on-light);
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.195px;
+}
+
+.archive-grid {
+  margin-top: 32px;
+}
+
 .about-grid {
   margin-top: 48px;
   grid-template-columns: minmax(0, 1.3fr) minmax(360px, 0.7fr);
@@ -529,6 +590,33 @@ h3 {
   word-break: break-word;
 }
 
+.footer-dark {
+  border-top: 1px solid var(--hairline);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 48px;
+}
+
+.footer-group {
+  display: grid;
+  gap: 24px;
+}
+
+.footer-link-list {
+  display: grid;
+  gap: 16px;
+}
+
+.footer-link {
+  color: var(--body);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
 @media (max-width: 1024px) {
   h1 {
     font-size: 56px;
@@ -544,9 +632,12 @@ h3 {
 
   .feature-grid,
   .skill-grid,
+  .spotlight-grid,
   .project-grid,
   .about-grid,
-  .contact-grid {
+  .contact-grid,
+  .footer-grid,
+  .profile-split {
     grid-template-columns: 1fr;
   }
 
@@ -600,6 +691,10 @@ h3 {
   .feature-card,
   .project-card,
   .contact-card {
+    padding: 24px;
+  }
+
+  .profile-dossier {
     padding: 24px;
   }
 
