@@ -15,7 +15,7 @@ export default function WorksSection() {
           <h2 id="works-title" className="h2">
             作品
           </h2>
-          <p className="lead">玩法原型、系统策划案，以及对商业游戏的拆解分析。</p>
+          <p className="lead">Unity 玩法复刻与原型验证，持续开发中。</p>
         </Reveal>
 
         <div className="works__grid">

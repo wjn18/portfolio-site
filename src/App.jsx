@@ -2,7 +2,6 @@ import { useCallback, useState } from "react";
 import AboutSection from "./components/AboutSection";
 import ContactSection from "./components/ContactSection";
 import Hero from "./components/Hero";
-import Marquee from "./components/Marquee";
 import Preloader from "./components/Preloader";
 import SiteFooter from "./components/SiteFooter";
 import TopBar from "./components/TopBar";
@@ -28,7 +27,6 @@ export default function App() {
 
       <main id="main">
         <Hero />
-        <Marquee />
         <WorksSection />
         <AboutSection />
         <ContactSection />

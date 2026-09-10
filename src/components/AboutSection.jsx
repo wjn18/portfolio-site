@@ -1,4 +1,9 @@
-import { aboutParagraphs, gameExperience, profile, skillGroups } from "../data/portfolio";
+import {
+  aboutParagraphs,
+  gameExperience,
+  profile,
+  skillGroups,
+} from "../data/portfolio";
 import Reveal from "./Reveal";
 
 const [schoolLine, periodLine] = profile.education.split("\n");
@@ -21,6 +26,10 @@ export default function AboutSection() {
             <p className="about__lead">{bio}</p>
             <p className="pullquote">{closing}</p>
             <dl className="dossier__rows">
+              <div className="dossier__row">
+                <b>在职</b>
+                <span style={{ textAlign: "right" }}>{profile.currentRole}</span>
+              </div>
               <div className="dossier__row">
                 <b>学历</b>
                 <span style={{ textAlign: "right" }}>{schoolLine}</span>

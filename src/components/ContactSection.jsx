@@ -3,13 +3,10 @@ import Reveal from "./Reveal";
 
 export default function ContactSection() {
   return (
-    <section className="section contact" id="contact" aria-labelledby="contact-title">
+    <section className="section contact" id="contact" aria-label="Contact">
       <div className="shell">
         <Reveal className="section-head section-head--ruled">
           <p className="eyebrow">Contact</p>
-          <h2 id="contact-title" className="h2">
-            如果你正在寻找一位既能从玩家体验出发做分析，也能执行想法到游戏原型中的人，请联系我！
-          </h2>
         </Reveal>
 
         <div className="contact__grid">

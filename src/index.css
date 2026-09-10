@@ -316,6 +316,21 @@ button {
   background: var(--accent-soft);
 }
 
+/* 亮面黑色胶囊按钮（参考 Get In Touch Today 样式） */
+.btn--dark {
+  background: linear-gradient(180deg, #2b2b35 0%, #0b0b12 58%);
+  border-color: rgba(255, 255, 255, 0.16);
+  border-radius: var(--r-pill);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 18px 44px rgba(0, 0, 0, 0.5);
+}
+
+.btn--dark:hover {
+  background: linear-gradient(180deg, #35354f 0%, #13131c 58%);
+}
+
 .btn--sm {
   min-height: 44px;
   padding: 0 var(--s-5);
@@ -366,28 +381,26 @@ button {
   background: rgba(255, 255, 255, 0.015);
 }
 
-.preloader__count {
-  font-family: var(--font-display);
-  font-size: clamp(4rem, 11vw, 7.5rem);
+.preloader__word {
+  display: flex;
+  font-family: var(--font-mono);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
   line-height: 1;
   color: var(--text-1);
-  font-variant-numeric: tabular-nums;
-  animation: count-pop 0.48s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@keyframes count-pop {
+.preloader__char {
+  display: inline-block;
+  animation: char-pop 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes char-pop {
   from {
     opacity: 0;
-    transform: translateY(18px) scale(0.96);
+    transform: translateY(12px);
   }
-}
-
-.preloader__meta {
-  font-family: var(--font-mono);
-  font-size: var(--fs-eyebrow);
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--text-3);
 }
 
 .preloader__bar {
@@ -442,10 +455,8 @@ button {
   top: 0;
   z-index: 50;
   height: var(--topbar-h);
-  border-bottom: 1px solid var(--line);
-  background: rgba(7, 7, 10, 0.72);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  background: linear-gradient(rgba(7, 7, 10, 0.82), rgba(7, 7, 10, 0));
+  pointer-events: none;
 }
 
 .topbar__inner {
@@ -454,6 +465,15 @@ button {
   justify-content: space-between;
   gap: var(--s-5);
   height: 100%;
+  pointer-events: auto;
+}
+
+.topbar__loc {
+  font-family: var(--font-mono);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-2);
 }
 
 .brand {
@@ -534,14 +554,22 @@ button {
 }
 
 .burger {
-  display: none;
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--line-2);
-  border-radius: var(--r-sm);
+  display: flex;
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50%;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.02);
+  background: #f4f4f1;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.burger:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
 }
 
 .burger__box {
@@ -554,8 +582,8 @@ button {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 1.5px;
-  background: var(--text-1);
+  height: 2px;
+  background: #101014;
   border-radius: 2px;
   transition: transform 0.22s ease, opacity 0.16s ease;
 }
@@ -601,6 +629,15 @@ button {
     opacity: 0;
     transform: translateY(-8px);
   }
+}
+
+.drawer__eyebrow {
+  margin: var(--s-2) var(--s-4) var(--s-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--text-3);
 }
 
 .drawer__link {
@@ -691,10 +728,10 @@ button {
 
 .hero__name {
   z-index: 1;
-  margin-top: var(--s-2);
+  margin-top: 0;
   font-family: var(--font-display);
   font-size: clamp(4.5rem, 20vw, 16rem);
-  font-weight: 400;
+  font-weight: 900;
   line-height: 0.95;
   letter-spacing: 0.01em;
   color: var(--text-1);
@@ -703,47 +740,30 @@ button {
 .hero__stage {
   position: relative;
   z-index: 2;
-  margin-top: clamp(-140px, -10vw, -48px);
-}
-
-.hero__photo-card {
-  width: clamp(200px, 21vw, 292px);
-  aspect-ratio: 3 / 4;
-  overflow: hidden;
-  border: 1px solid var(--line-2);
-  border-radius: var(--r-md);
-  background: var(--surface-2);
-  transform: rotate(-2deg);
-  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.55);
-}
-
-.hero__photo-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 18%;
-  filter: grayscale(1) contrast(1.05) brightness(0.94);
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(12px, 2vw, 24px);
 }
 
 .hero__badge {
-  position: absolute;
-  bottom: -24px;
-  right: -58px;
-  width: clamp(92px, 9vw, 116px);
+  position: relative;
+  width: clamp(120px, 12vw, 152px);
   aspect-ratio: 1;
 }
 
 .hero__badge::before {
   content: "";
   position: absolute;
-  inset: 5px;
+  inset: 3px;
   border-radius: var(--r-pill);
   background: #0b0b12;
   border: 1px solid var(--line-2);
 }
 
 .hero__badge svg {
-  position: relative;
+  position: absolute;
+  inset: 0;
+  display: block;
   width: 100%;
   height: 100%;
   animation: badge-spin 16s linear infinite;
@@ -751,8 +771,8 @@ button {
 
 .hero__badge text {
   font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 2.4px;
+  font-size: 9.5px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   fill: var(--text-2);
 }
@@ -789,14 +809,10 @@ button {
   justify-items: start;
 }
 
-.hero__trust {
-  max-width: 46ch;
-  font-family: var(--font-mono);
-  font-size: var(--fs-eyebrow);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  line-height: 1.9;
-  color: var(--text-3);
+.hero__cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
 }
 
 .hero__roles {
@@ -975,6 +991,11 @@ button {
   gap: var(--s-2);
   margin-top: auto;
   padding-top: var(--s-6);
+}
+
+/* 暂无外链的作品卡片：去掉空链接区占的底部留白 */
+.links:empty {
+  display: none;
 }
 
 /* --------------------------------------------------------------------------
@@ -1239,9 +1260,6 @@ a.contact-card:hover .contact-card__hint {
     font-size: clamp(4.5rem, 26vw, 12rem);
   }
 
-  .hero__stage {
-    margin-top: clamp(-120px, -14vw, -48px);
-  }
 }
 
 @media (max-width: 640px) {
@@ -1285,11 +1303,6 @@ a.contact-card:hover .contact-card__hint {
 
   .hero__roles li {
     font-size: 1.125rem;
-  }
-
-  .hero__badge {
-    right: -14px;
-    bottom: -16px;
   }
 
   .hero__scroll {

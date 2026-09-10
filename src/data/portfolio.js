@@ -4,167 +4,77 @@
  * resume.pdf 更新时，同步维护本文件即可驱动全站内容。
  */
 
-export const unityDemoVideoHref =
-  "https://www.bilibili.com/video/BV1gvXiBSEjx/?share_source=copy_web&vd_source=a2e61c6d61d8bfc0fad6ebcde9ac1d85";
-export const ue5DemoVideoHref =
-  "https://www.bilibili.com/video/BV1hVRBB8En3/?share_source=copy_web&vd_source=a2e61c6d61d8bfc0fad6ebcde9ac1d85";
-export const unityDemoDesignHref = "/docs/unity3d-arpg-battle-system-demo-design.pdf";
-export const ue5DemoFileHref = "https://pan.baidu.com/s/1IPX7dLClaLcBYdBtzkrzgQ?pwd=h5rq";
-export const ue5DemoDesignHref = "/docs/ue5-open-world-city-level-demo.pdf";
-
 export const profile = {
   name: "吴嘉宁",
   englishTitle: "Game Design Portfolio",
-  role: "系统策划 / 战斗拆解 / 关卡分析 / 关卡原型",
+  role: "游戏开发全栈工程师",
+  currentRole: "游戏开发全栈工程师",
   intro:
-    "目前就读于南安普顿大学计算机科学本科，进行过系统策划案撰写、商业游戏拆解分析与 Unity 玩法原型开发，希望进入游戏行业，创造真正对玩家体验有价值的内容。",
+    "目前在职游戏开发全栈工程师，专注 Unity 6 与游戏 Agent Harness 工程的开发：把 Unity 6 的引擎能力、编辑器接口与验证闭环封装成 AI Agent 可安全调用的工具层，让 Agent 真正能改工程、能验证、能回滚。",
   education: "南安普顿大学 · 计算机科学本科\n2024.09 - 2027.06",
-  targets: ["系统策划", "数值策划", "关卡策划", "战斗策划", "技术策划"],
+  targets: ["游戏开发全栈工程师", "Agent Harness 工程", "游戏工具链 / 编辑器扩展", "战斗系统设计"],
   highlights: [
-    "能独立输出系统策划案、拆解文档、脑图与基础表格方案",
-    "具备 Unity Demo 实操经验，可用 C# 完成玩法原型验证",
-    "长期深度体验 ARPG、MMORPG、FPS、塔防与叙事驱动类游戏",
+    "专注 Unity 6 与游戏 Agent Harness 工程：工具层封装、上下文管理与执行闭环设计",
+    "具备游戏全栈开发能力，覆盖玩法原型、编辑器工具与自动化流程",
+    "有战斗系统设计与战斗美术表现经验，习惯用可玩原型快速验证想法",
   ],
 };
 
 export const actions = [
   { label: "在线查看简历", href: "/resume.pdf", primary: true, external: true },
   { label: "下载简历", href: "/resume.pdf", external: true, download: true },
-  { label: "观看 Demo 视频", href: ue5DemoVideoHref, external: true },
 ];
 
 export const projects = [
   {
-    title: "Unity3D ARPG 战斗系统 Demo",
-    subtitle: "Unity 个人项目 / 第三人称俯视角 ARPG / 战斗系统验证",
-    period: "2026.02 - 开发中",
-    type: "Unity Demo",
+    title: "Unity 炸弹人复刻",
+    subtitle: "Unity 个人项目 / 经典玩法复刻 / 网格对战",
+    period: "2026.08 - 开发中",
+    type: "Unity Project",
     role: "独立完成",
     summary:
-      "一款第三人称俯视角 ARPG 战斗系统 Demo。玩家操控角色与敌人进行小兵战和 Boss 战，重点展示我在战斗原型、敌我交互和玩法验证上的落地能力。",
+      "对经典炸弹人玩法的 Unity 复刻。玩家在网格地图中放置炸弹、利用十字爆炸与连锁引爆清场，同时规避自己的爆炸范围并与敌人周旋，目标是把原作的规则与手感完整还原并做出可玩的对战节奏。",
     contributions: [
-      "使用 Unity 2023、C#、Blender 进行原型开发与迭代",
-      "独立完成玩法雏形、敌我交互和战斗细节",
-      "将策划思路转化为可运行 Demo，用于验证玩法节奏与系统可行性",
+      "使用 Unity + C# 从零搭建网格地图、炸弹放置与爆炸连锁逻辑",
+      "梳理炸弹数量、爆炸范围、道具成长等规则，并拆成可调的数值与配表",
+      "设计敌人 AI 行为与关卡布局，验证单局节奏与对战可玩性",
+      "打磨引爆的特效、顿帧与音效反馈，强化放置与引爆的爽感",
     ],
-    links: [
-      { label: "视频演示链接", href: unityDemoVideoHref },
-      { label: "策划案链接", href: unityDemoDesignHref },
-    ],
-  },
-  {
-    title: "UE5 开放世界城市关卡设计 Demo（灰盒）",
-    subtitle: "UE5 个人项目 / 开放世界城市关卡设计 / 灰盒验证",
-    period: "2026.05 - 开发中",
-    type: "UE5 Demo",
-    role: "独立完成",
-    summary:
-      "一个以开放世界城市区域为核心的 UE5 灰盒关卡 Demo，围绕多样玩法路径、探索引导与空间节奏进行验证，重点展示我将关卡设计思路落到可游玩场景中的能力。",
-    contributions: [
-      "使用 UE5 进行城市灰盒搭建、空间迭代与关卡验证",
-      "梳理兴趣点游玩动线、地标引导与区域节奏分配",
-      "将设计文档落地至场景灰盒，结合演示视频，用于验证关卡方案可行性",
-    ],
-    links: [
-      { label: "视频演示链接", href: ue5DemoVideoHref },
-      { label: "Demo文件链接", href: ue5DemoFileHref },
-      { label: "设计文档链接", href: ue5DemoDesignHref },
-    ],
-  },
-  {
-    title: "《燕云十六声》新家业系统策划案",
-    subtitle: "系统策划 / 资源循环 / 玩法扩展",
-    period: "2025.08",
-    type: "系统策划案",
-    role: "独立完成",
-    summary:
-      "围绕现有家业系统的体验问题，提出结合建造、生产与守村玩法的改造方向，强化资源消耗、重复游玩价值与世界观合理性，同时兼顾开发成本与功能复用率。",
-    contributions: [
-      "将建造系统与守村战斗绑定，提升已有功能利用率",
-      "设计庄客战斗等级、资源循环与长线成长体验",
-      "从商业产品视角考虑开发成本、内容复用与长期留存",
-    ],
-    links: [
-      { label: "站内查看 PDF", href: "/docs/yanyun-home-system-plan.pdf" },
-      { label: "金山文档版本", href: "https://www.kdocs.cn/l/ctnEh5PqZ3za" },
-    ],
-  },
-  {
-    title: "《真三国无双：起源》战斗系统拆解",
-    subtitle: "战斗分析 / 资源管理 / 节奏设计",
-    period: "2025.07",
-    type: "战斗拆解",
-    role: "独立完成",
-    summary:
-      "从武器差异、关卡路径、士气与资源管理等角度分析其高爽感与策略感并存的原因，总结战场压力如何分阶段投放，并讨论系列创新与经典保留之间的平衡。",
-    contributions: [
-      "分析武器、路线、士气与战场资源之间的联动逻辑",
-      "总结敌兵与武将压力的分阶段投放方式",
-      "从产品定位角度讨论爽感、策略与老玩家预期的平衡",
-    ],
-    links: [
-      { label: "站内查看 PDF", href: "/docs/dynasty-warriors-origin-analysis.pdf" },
-      { label: "金山文档版本", href: "https://www.kdocs.cn/l/cl7RBZHv5pXh" },
-    ],
-  },
-  {
-    title: "《剑星》战斗动作拆解",
-    subtitle: "动作表现 / 镜头语言 / 打击反馈",
-    period: "2025.09",
-    type: "动作拆解",
-    role: "独立完成",
-    summary:
-      "围绕连续进攻动作进行逐帧拆解，分析动作节奏、镜头处理、特效配合与打击反馈如何共同构成爽感，并从动作表现反推产品受众定位与风格表达。",
-    contributions: [
-      "聚焦关键帧、顿帧、镜头拉近与动态模糊的配合方式",
-      "分析较慢动作节奏与更广受众定位之间的关系",
-      "从表现设计反推动作策略与风格化表达逻辑",
-    ],
-    links: [{ label: "站内查看 PDF", href: "/docs/stellar-blade-analysis.pdf" }],
-  },
-  {
-    title: "《天国：拯救 2》序章关卡拆解",
-    subtitle: "关卡设计 / 教学引导 / 环境叙事",
-    period: "2025.10",
-    type: "关卡拆解",
-    role: "独立完成",
-    summary:
-      "以序章新手关为样本，分析开放世界叙事驱动关卡中的空间结构、机制教学、情绪曲线与沉浸式引导，重点总结教程设计如何自然融入剧情和场景逻辑。",
-    contributions: [
-      "分析地图结构、潜行机制与环境叙事的配合",
-      "关注非封闭式关卡中的引导方式与节奏控制",
-      "总结教程设计如何融入剧情推进与空间逻辑",
-    ],
-    links: [
-      { label: "站内查看 PDF", href: "/docs/kingdom-come-2-level-analysis.pdf" },
-      { label: "金山文档版本", href: "https://www.kdocs.cn/l/ci6dPy89l2US" },
-    ],
+    links: [],
   },
 ];
 
 export const skillGroups = [
   {
-    title: "系统策划与文档输出",
+    title: "Agent Harness 工程",
     items: [
-      "熟悉 MMORPG、ARPG、FPS 等商业游戏的开发流程与商业模式",
-      "能够独立完成系统策划案、拆解文档、思维导图与基础表格方案",
-      "了解关卡设计、敌人 AI、动作设计等相关内容",
+      "设计面向游戏开发的 Agent Harness：工具层、上下文层与执行闭环",
+      "为 Agent 封装引擎侧能力：Editor 自动化、场景与资产读写、运行时状态查询",
+      "设计权限边界、改动预检与回滚策略，控制 Agent 改动工程的风险",
     ],
   },
   {
-    title: "工具与表达能力",
+    title: "游戏全栈开发",
     items: [
-      "熟练使用 Xmind、Excel、Axure",
-      "可使用 Excel 进行数值表设计、资源消耗测算与简单推演",
-      "可使用 Axure 梳理界面结构与基础交互流程",
+      "以 Unity 6 为主力引擎，同时具备 Godot 与 UE5 的实操经验",
+      "使用 C# / Python / TypeScript 完成从玩法原型到工具链的端到端开发",
+      "熟悉数据驱动架构：配置表 → 导入器 → 运行时数据，支撑策划自助改数值",
     ],
   },
   {
-    title: "开发与原型能力",
+    title: "自动化与验证",
     items: [
-      "熟悉 Java、Python、C# 的基础开发流程",
-      "了解 Unity 与 UE5，具备 Unity 3D 和UE5 实操经验",
-      "可使用 C# 在 Unity 中编写脚本并完成玩法原型验证",
+      "搭建自动化构建、冒烟与回归流程，减少重复人力投入",
+      "用双验证机制校验 Agent 产出：视觉检测 + 运行时状态 / 内存检测",
+      "开发编辑器扩展与外部接口（如 MCP），把重复性工作工具化",
+    ],
+  },
+  {
+    title: "设计与文档表达",
+    items: [
+      "能独立输出战斗系统方案，并用可玩 Demo 快速验证手感与节奏",
+      "对动作节奏、顿帧、镜头与打击反馈有较多拆解与实践",
+      "熟练使用 Xmind、Excel、Axure 输出方案、数值表与界面流程",
     ],
   },
 ];
@@ -188,21 +98,22 @@ export const contacts = [
 ];
 
 export const aboutParagraphs = [
-  "我是吴嘉宁，21 岁。相比只停留在“喜欢玩游戏”，我更习惯把游戏体验转化为可复用的输出：文档、流程、表格，以及能够验证想法的玩法原型。",
-  "我长期关注 ARPG、MMORPG、FPS、塔防与叙事驱动类游戏，愿意投入大量时间研究新作、复盘机制并整理设计思路，也希望在职业路径中持续深化这件事。",
+  "我是吴嘉宁，21 岁，在职游戏开发全栈工程师，目前专注 Unity 6 与游戏 Agent Harness 工程的开发。相比单点做功能，我更在意把引擎能力、工具链和验证闭环搭起来，让 AI Agent 能真正安全地改一个 Unity 工程。",
+  "我长期关注 ARPG、动作游戏与 MMORPG，也在工程侧持续投入：Agent 工具链、编辑器扩展与自动化验证，是我现在花时间最多的方向。",
   "一些闲聊：我的游戏生涯开始于小学一年级，那时我表哥在电脑上玩4399小游戏。随着智能手机普及，我也在手机上接触了植物大战僵尸，汤姆猫等等有趣的游戏。随后的日子里，我在闲暇之余便会打开手机搜搜新的游戏，整个小学时期我至少已经玩过并通关50款游戏。",
   "从此之后游戏成为了我人生重要的一部分，他的美妙超过世界上任何一种娱乐，对我来说他就是真正的“第九艺术”。进入大学以后，我就打算毕业以后做游戏，后来我意识到其实并不一定要等毕业，我可以在空余时间开发，于是我就开始了自己的游戏开发之路。",
   "希望热爱和初心一直在，正在看这段话的你也是。",
 ];
 
 export const navItems = [
+  { label: "首页", href: "#home" },
   { label: "作品", href: "#works" },
   { label: "关于", href: "#about" },
   { label: "联系", href: "#contact" },
 ];
 
 export const specCells = [
-  { value: "02", label: "核心 Demo 项目" },
-  { value: "05", label: "策划案 / 拆解文档" },
+  { value: "01", label: "在研项目" },
+  { value: "04", label: "核心能力方向" },
   { value: "09", label: "深度体验游戏类型" },
 ];

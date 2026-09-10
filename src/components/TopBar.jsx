@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { navItems, profile } from "../data/portfolio";
+import { navItems } from "../data/portfolio";
 
 export default function TopBar({ activeId }) {
   const [open, setOpen] = useState(false);
@@ -28,56 +28,30 @@ export default function TopBar({ activeId }) {
     <>
       <header className="topbar">
         <div className="shell topbar__inner">
-          <a href="#home" className="brand" onClick={() => setOpen(false)}>
-            <span className="brand__dot brand__dot--live" aria-hidden="true" />
-            <span>{profile.englishTitle}</span>
-          </a>
+          <p className="topbar__loc">Based in Shanghai</p>
 
-          <nav className="nav" aria-label="主导航">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="nav__link"
-                aria-current={isActive(item.href) ? "true" : undefined}
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-
-          <div className="topbar__right">
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn--primary btn--sm"
-            >
-              在线简历
-            </a>
-
-            <button
-              type="button"
-              className="burger"
-              aria-expanded={open}
-              aria-controls="mobile-drawer"
-              aria-label={open ? "关闭导航菜单" : "打开导航菜单"}
-              onClick={() => setOpen((value) => !value)}
-            >
-              <span className="burger__box" aria-hidden="true">
-                <span />
-                <span />
-                <span />
-              </span>
-            </button>
-          </div>
+          <button
+            type="button"
+            className="burger"
+            aria-expanded={open}
+            aria-controls="site-nav"
+            aria-label={open ? "关闭导航菜单" : "打开导航菜单"}
+            onClick={() => setOpen((value) => !value)}
+          >
+            <span className="burger__box" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
+          </button>
         </div>
       </header>
 
       {open && (
         <>
           <div className="scrim" onClick={() => setOpen(false)} aria-hidden="true" />
-          <div className="drawer" id="mobile-drawer">
+          <nav className="drawer" id="site-nav" aria-label="站点导航">
+            <p className="drawer__eyebrow">导航 · Menu</p>
             {navItems.map((item, index) => (
               <a
                 key={item.label}
@@ -94,12 +68,15 @@ export default function TopBar({ activeId }) {
               href="/resume.pdf"
               target="_blank"
               rel="noreferrer"
-              className="btn btn--primary drawer__cta"
+              className="btn btn--dark drawer__cta"
               onClick={() => setOpen(false)}
             >
               在线查看简历
+              <span className="btn__arrow" aria-hidden="true">
+                ↗
+              </span>
             </a>
-          </div>
+          </nav>
         </>
       )}
     </>

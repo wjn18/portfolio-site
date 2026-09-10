@@ -1,16 +1,22 @@
 import { useEffect, useState } from "react";
 
-const COUNT_FROM = 3;
-const TICK_MS = 640;
+/** 逐个浮现的文本 */
+const TEXT = "Loading..";
+/** 首个字符出现后，露首字母到第二个字的间隔 */
+const BASE_MS = 350;
+/** 每多一个字，间隔按此系数递减 → 出现速度逐步加快 */
+const RATIO = 0.85;
+/** 全部浮现后的停顿 */
+const HOLD_MS = 340;
 const LEAVE_MS = 560;
 
 /**
- * 3-2-1 倒计时加载页。
- * 结束后回调 onDone，由父级卸载并触发热场入场动画。
+ * 加载页：Loading.. 的字符逐个出现，且出现速度逐步加快。
+ * 全部出现后短暂停留再淡出，回调 onDone 由父级卸载并触发首屏入场动画。
  * prefers-reduced-motion 时直接跳过。
  */
 export default function Preloader({ onDone }) {
-  const [count, setCount] = useState(COUNT_FROM);
+  const [shown, setShown] = useState(1);
   const [leaving, setLeaving] = useState(false);
 
   useEffect(() => {
@@ -20,26 +26,30 @@ export default function Preloader({ onDone }) {
     }
 
     document.body.style.overflow = "hidden";
-    let n = COUNT_FROM;
 
-    const tick = setInterval(() => {
-      n -= 1;
-      if (n <= 0) {
-        clearInterval(tick);
-        setLeaving(true);
-        setTimeout(onDone, LEAVE_MS);
-      } else {
-        setCount(n);
-      }
-    }, TICK_MS);
+    const timers = [];
+    let elapsed = BASE_MS;
+
+    // 第 2 个字符起逐个浮现，间隔按 RATIO 递减
+    for (let i = 1; i < TEXT.length; i += 1) {
+      timers.push(
+        setTimeout(() => {
+          setShown(i + 1);
+        }, elapsed),
+      );
+      elapsed += BASE_MS * RATIO ** i;
+    }
+
+    timers.push(setTimeout(() => setLeaving(true), elapsed + HOLD_MS));
+    timers.push(setTimeout(onDone, elapsed + HOLD_MS + LEAVE_MS));
 
     return () => {
-      clearInterval(tick);
+      timers.forEach(clearTimeout);
       document.body.style.overflow = "";
     };
   }, [onDone]);
 
-  const progress = leaving ? 1 : (COUNT_FROM - count) / COUNT_FROM;
+  const progress = shown / TEXT.length;
 
   return (
     <div
@@ -48,10 +58,15 @@ export default function Preloader({ onDone }) {
       aria-label="页面加载中"
     >
       <div className="preloader__box">
-        <span key={count} className="preloader__count" aria-hidden="true">
-          {count}
+        <span className="preloader__word" aria-hidden="true">
+          {TEXT.split("")
+            .slice(0, shown)
+            .map((char, index) => (
+              <span key={index} className="preloader__char">
+                {char}
+              </span>
+            ))}
         </span>
-        <span className="preloader__meta">Loading · Portfolio</span>
         <span
           className="preloader__bar"
           style={{ transform: `scaleX(${progress})` }}
