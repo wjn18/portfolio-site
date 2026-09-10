@@ -1,3 +1,8 @@
 [build]
+  # 显式声明 base 为仓库根目录。
+  # 作用：netlify.toml 的 base 会覆盖 Netlify UI 里的 Base directory 设置。
+  # 背景：UI 里曾被写入本机 Windows 绝对路径（C:\Users\...\portfolio-site），
+  # 构建机上不存在该路径，导致 "Base directory does not exist" 直接解析配置失败。
+  base = "."
   command = "npm run build"
   publish = "dist"
