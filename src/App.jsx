@@ -1,23 +1,25 @@
+import { useCallback, useState } from "react";
 import AboutSection from "./components/AboutSection";
 import ContactSection from "./components/ContactSection";
-import EducationBand from "./components/EducationBand";
 import Hero from "./components/Hero";
-import ProfileSection from "./components/ProfileSection";
-import SectionRail from "./components/SectionRail";
+import Marquee from "./components/Marquee";
+import Preloader from "./components/Preloader";
 import SiteFooter from "./components/SiteFooter";
-import SkillsSection from "./components/SkillsSection";
-import SpecBand from "./components/SpecBand";
 import TopBar from "./components/TopBar";
 import WorksSection from "./components/WorksSection";
 import useActiveSection from "./hooks/useActiveSection";
 
-const SECTION_IDS = ["home", "works", "skills", "about", "contact"];
+const SECTION_IDS = ["home", "works", "about", "contact"];
 
 export default function App() {
+  const [ready, setReady] = useState(false);
   const activeId = useActiveSection(SECTION_IDS);
+  const handleLoaded = useCallback(() => setReady(true), []);
 
   return (
-    <div className="site-shell">
+    <div className={`site-shell ${ready ? "is-ready" : "is-booting"}`}>
+      {!ready && <Preloader onDone={handleLoaded} />}
+
       <a className="u-skip" href="#main">
         跳到主要内容
       </a>
@@ -26,16 +28,12 @@ export default function App() {
 
       <main id="main">
         <Hero />
-        <SpecBand />
-        <ProfileSection />
-        <EducationBand />
+        <Marquee />
         <WorksSection />
-        <SkillsSection />
         <AboutSection />
         <ContactSection />
       </main>
 
-      <SectionRail activeId={activeId} />
       <SiteFooter />
     </div>
   );

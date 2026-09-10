@@ -1,50 +1,70 @@
-import { aboutParagraphs, gameExperience } from "../data/portfolio";
+import { aboutParagraphs, gameExperience, profile, skillGroups } from "../data/portfolio";
+import Reveal from "./Reveal";
+
+const [schoolLine, periodLine] = profile.education.split("\n");
 
 export default function AboutSection() {
-  const leadParagraphs = aboutParagraphs.slice(0, 4);
-  const closingParagraph = aboutParagraphs[aboutParagraphs.length - 1];
+  const [bio, , , , closing] = aboutParagraphs;
 
   return (
-    <section
-      className="section section--divided section--alt"
-      id="about"
-      aria-labelledby="about-title"
-    >
+    <section className="section section--divided" id="about" aria-labelledby="about-title">
       <div className="shell">
-        <div className="section-head section-head--ruled">
+        <Reveal className="section-head section-head--ruled">
           <p className="eyebrow">About</p>
           <h2 id="about-title" className="h2">
             关于我
           </h2>
-        </div>
+        </Reveal>
 
         <div className="about__grid">
-          <article className="card longform">
-            {leadParagraphs.map((text) => (
-              <p key={text}>{text}</p>
+          <Reveal>
+            <p className="about__lead">{bio}</p>
+            <p className="pullquote">{closing}</p>
+            <dl className="dossier__rows">
+              <div className="dossier__row">
+                <b>学历</b>
+                <span style={{ textAlign: "right" }}>{schoolLine}</span>
+              </div>
+              <div className="dossier__row">
+                <b>在读</b>
+                <span style={{ textAlign: "right" }}>{periodLine}</span>
+              </div>
+              <div className="dossier__row">
+                <b>方向</b>
+                <span style={{ textAlign: "right" }}>{profile.targets.join(" / ")}</span>
+              </div>
+            </dl>
+          </Reveal>
+
+          <div className="about__skills">
+            {skillGroups.map((group, index) => (
+              <Reveal key={group.title} delay={index * 100}>
+                <article className="card card--raised skill-card">
+                  <h3 className="skill__title">
+                    <span className="skill__num">{String(index + 1).padStart(2, "0")}</span>
+                    {group.title}
+                  </h3>
+                  <ul className="stack">
+                    {group.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+              </Reveal>
             ))}
-            <p className="pullquote">{closingParagraph}</p>
-          </article>
-
-          <article className="card card--raised">
-            <p className="eyebrow">Player Background</p>
-            <h3 className="h3" style={{ marginTop: "var(--s-4)" }}>
-              游戏经历
-            </h3>
-            <p className="copy" style={{ marginTop: "var(--s-4)" }}>
-              累计体验近百款游戏。相比单纯通关，我更关注作品背后的系统结构、关卡节奏控制、玩法核心与商业定位，这也是我做拆解和策划案的重要基础。
-            </p>
-
-            <ul className="experience">
-              {gameExperience.map((game, index) => (
-                <li key={game}>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  {game}
-                </li>
-              ))}
-            </ul>
-          </article>
+          </div>
         </div>
+
+        <Reveal className="about__games">
+          <p className="eyebrow">Player Background</p>
+          <div className="tags">
+            {gameExperience.map((game) => (
+              <span key={game} className="tag tag--muted">
+                {game}
+              </span>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );

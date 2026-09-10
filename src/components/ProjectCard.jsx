@@ -1,23 +1,15 @@
-export default function ProjectCard({ project, index = 0, featured = false }) {
+export default function ProjectCard({ project, index = 0 }) {
   return (
-    <article className={featured ? "project project--featured" : "project"}>
+    <article className="project">
       <div className="project__top">
         <span className="project__type">{project.type}</span>
-        <span className="project__badge">{project.role}</span>
+        <span className="project__index">{String(index + 1).padStart(2, "0")}</span>
       </div>
 
       <h3 className="project__title">{project.title}</h3>
       <p className="project__sub">{project.subtitle}</p>
       <p className="project__period">{project.period}</p>
       <p className="project__summary">{project.summary}</p>
-
-      <ul className="contrib">
-        {project.contributions.map((item) => (
-          <li key={item}>
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
 
       <div className="links">
         {project.links.map((link) => (
@@ -32,10 +24,6 @@ export default function ProjectCard({ project, index = 0, featured = false }) {
           </a>
         ))}
       </div>
-
-      <span className="project__index" style={{ marginTop: "var(--s-4)" }}>
-        {String(index + 1).padStart(2, "0")} / {project.type}
-      </span>
     </article>
   );
 }

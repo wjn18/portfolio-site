@@ -187,21 +187,6 @@ export const contacts = [
   { label: "微信", value: "ILEve041818" },
 ];
 
-export const sectionCards = [
-  {
-    title: "系统感",
-    desc: "能把玩法目标、资源循环、奖励结构与体验节奏串联起来分析，而不只停留在感性评价。",
-  },
-  {
-    title: "表达能力",
-    desc: "能把复杂内容整理成策划文档、脑图、表格与界面流程，方便团队理解与推进。",
-  },
-  {
-    title: "落地意识",
-    desc: "知道什么想法适合写方案，什么内容必须做原型验证，重视可实现性与实际开发成本。",
-  },
-];
-
 export const aboutParagraphs = [
   "我是吴嘉宁，21 岁。相比只停留在“喜欢玩游戏”，我更习惯把游戏体验转化为可复用的输出：文档、流程、表格，以及能够验证想法的玩法原型。",
   "我长期关注 ARPG、MMORPG、FPS、塔防与叙事驱动类游戏，愿意投入大量时间研究新作、复盘机制并整理设计思路，也希望在职业路径中持续深化这件事。",
@@ -212,7 +197,6 @@ export const aboutParagraphs = [
 
 export const navItems = [
   { label: "作品", href: "#works" },
-  { label: "能力", href: "#skills" },
   { label: "关于", href: "#about" },
   { label: "联系", href: "#contact" },
 ];
@@ -222,34 +206,3 @@ export const specCells = [
   { value: "05", label: "策划案 / 拆解文档" },
   { value: "09", label: "深度体验游戏类型" },
 ];
-
-export const spotlightProjects = projects.slice(0, 2);
-export const archiveProjects = projects.slice(2);
-
-export const footerGroups = [
-  {
-    title: "作品入口",
-    links: [
-      { label: "Unity3D ARPG 战斗系统 Demo", href: unityDemoDesignHref },
-      { label: "UE5 开放世界城市关卡设计 Demo（灰盒）", href: ue5DemoDesignHref },
-      { label: "在线查看简历", href: "/resume.pdf" },
-    ],
-  },
-  {
-    title: "能力方向",
-    links: profile.targets.map((item) => ({ label: item, href: "#skills" })),
-  },
-  {
-    title: "联系方式",
-    links: contacts
-      .filter((item) => item.href)
-      .map((item) => ({ label: `${item.label} · ${item.value}`, href: item.href })),
-  },
-];
-
-export const siteMeta = {
-  title: "吴嘉宁 | 游戏策划作品集",
-  description:
-    "吴嘉宁的游戏策划作品集，包含系统策划、战斗拆解、关卡分析与 Unity 原型作品。",
-  updatedAt: "2026.09",
-};
