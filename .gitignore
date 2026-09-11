@@ -1,7 +1,12 @@
 node_modules/
 dist/
+.env
+.env.*
+!.env.example
 .edge-profile/
 .netlify/
 cloudflared*.log
 edge-shot*.png
 edge-inspect*.json
+# netlify dev 本地运行时生成
+deno.lock

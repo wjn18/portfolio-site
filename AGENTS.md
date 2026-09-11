@@ -1,12 +1,15 @@
 # Project: Personal Website Auto-Update System
 
 ## Overview
-This project is a personal website hosted on Cloudflare.
+
+This project is a personal website deployed on **Netlify** (Git-based deploys from `main`).
+Cloudflare Pages was used previously and is **deprecated** — ignore any `pages.dev` URL.
 
 The website content is derived from a single source:
-- `resume.pdf` located at: `portfolio-site/public/resume.pdf`
+- `src/data/content.json` — the ONLY source of truth for website text / projects / videos / files
 
-The system is **resume-driven**:
+`resume.pdf` (`portfolio-site/public/resume.pdf`) is the source of truth for **resume facts** only.
+
 > Any update to `resume.pdf` MUST propagate to website content, GitHub, and deployment.
 
 ---
@@ -62,10 +65,28 @@ Whenever `resume.pdf` changes, the agent MUST:
    - spacing system
    - component patterns
 
-5. Replace hosted resume file
+5. Replace the hosted resume file:
+   - Upload via `/admin` → 文件 page, OR
+   - Update the `files[]` entry in `src/data/content.json` (field `publicPath`, e.g. `/resume.pdf`)
 6. Commit changes
 7. Push to GitHub
-8. Trigger Cloudflare deployment
+8. Netlify rebuilds automatically. To skip a build, put `[skip netlify]` in the commit message.
+
+---
+
+## Content Source (READ THIS FIRST)
+
+- **Content lives in `src/data/content.json`.** Update that file, or use `/admin`.
+- `src/data/portfolio.js` is a **read-only adapter**. It only maps JSON fields to the
+  export names components already use. Editing it does NOT change website content.
+- Do NOT hand-write content into component files.
+
+### Content constraints (validated server-side on save)
+
+- `about`: at least 5 paragraphs. #1 = self-intro, last = closing line. Order matters.
+- `profile.education`: newline-separated, line 1 = school, line 2 = period.
+- `projects[]` / `videos[]`: each needs `id`, numeric `sort`, boolean `visible`.
+- Videos store **external links only** — never upload video files.
 
 ---
 

@@ -1,0 +1,318 @@
+/* 后台样式：浅色、够清楚就行，不讲究美观 */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #1c1c1f;
+  background: #f4f4f6;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* ---------- 布局 ---------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 24px;
+  height: 56px;
+  background: #fff;
+  border-bottom: 1px solid #dcdce1;
+}
+
+.topbar .brand {
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.topbar nav {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.topbar nav a {
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: #4a4a52;
+  text-decoration: none;
+}
+
+.topbar nav a:hover {
+  background: #eeeef2;
+}
+
+.topbar nav a.is-active {
+  background: #e8e6fd;
+  color: #3c3489;
+}
+
+.topbar .spacer {
+  flex: 1;
+}
+
+.topbar .actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #dcdce1;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.card > h2 {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.card > .hint {
+  margin: 0 0 16px;
+  color: #6a6a75;
+  font-size: 13px;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin-bottom: 12px;
+}
+
+/* ---------- 表单 ---------- */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 14px;
+  flex: 1;
+  min-width: 220px;
+}
+
+.field > .lbl,
+.field > label {
+  font-size: 13px;
+  color: #4a4a52;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="url"],
+input[type="number"],
+input[type="password"],
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+  padding: 7px 10px;
+  border: 1px solid #c9c9d2;
+  border-radius: 6px;
+  background: #fff;
+  width: 100%;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #534ab7;
+  outline-offset: -1px;
+  border-color: #534ab7;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 76px;
+  line-height: 1.6;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.check input {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---------- 按钮 ---------- */
+button {
+  font: inherit;
+  padding: 7px 14px;
+  border: 1px solid #c9c9d2;
+  border-radius: 6px;
+  background: #fff;
+  color: #1c1c1f;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+button:hover:not(:disabled) {
+  background: #eeeef2;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.primary {
+  background: #534ab7;
+  border-color: #534ab7;
+  color: #fff;
+}
+
+button.primary:hover:not(:disabled) {
+  background: #443ba0;
+}
+
+button.danger {
+  color: #a32d2d;
+  border-color: #e8b4b4;
+}
+
+button.danger:hover:not(:disabled) {
+  background: #fbeaea;
+}
+
+button.small {
+  padding: 3px 9px;
+  font-size: 13px;
+}
+
+/* ---------- 提示 ---------- */
+.banner {
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  border: 1px solid;
+}
+
+.banner.info {
+  background: #eef1fb;
+  border-color: #c3cbf0;
+  color: #2c3489;
+}
+
+.banner.error {
+  background: #fbeaea;
+  border-color: #e8b4b4;
+  color: #8a2020;
+}
+
+.banner.ok {
+  background: #e9f5ec;
+  border-color: #b3ddbf;
+  color: #1c5c30;
+}
+
+.dirty-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d68b00;
+  margin-right: 6px;
+}
+
+.muted {
+  color: #6a6a75;
+  font-size: 13px;
+}
+
+/* ---------- 表格 ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid #e4e4e9;
+  vertical-align: top;
+}
+
+th {
+  color: #4a4a52;
+  font-weight: 600;
+  background: #f7f7f9;
+  white-space: nowrap;
+}
+
+td input,
+td select,
+td textarea {
+  min-width: 110px;
+}
+
+/* ---------- 列表条目 ---------- */
+.item {
+  border: 1px solid #dcdce1;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  background: #fcfcfd;
+}
+
+.item-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.item-head strong {
+  font-size: 14px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0 12px;
+}
+
+.uploader {
+  border: 1px dashed #b9b9c6;
+  border-radius: 8px;
+  padding: 18px;
+  text-align: center;
+  background: #fafafc;
+}
+
+.login-box {
+  max-width: 340px;
+  margin: 96px auto;
+}

@@ -6,3 +6,26 @@
   base = "."
   command = "npm run build"
   publish = "dist"
+  # 后台 API（见 netlify/functions/），源码目录，构建时由 Netlify 自动打包
+  functions = "netlify/functions"
+
+[dev]
+  # 本地 `npx netlify dev` 用。
+  # 必须显式声明 targetPort：Netlify 默认等 Vite 在 5173，而本项目 vite.config.js
+  # 配的是 4173，不声明就会一直 "Waiting for Vite dev server on port 5173" 然后超时。
+  command = "npm run dev"
+  targetPort = 4173
+  port = 8888
+  autoLaunch = false
+
+# /api/* 转发到 Functions，省得前端写 .netlify/functions 这种内部路径
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# 后台是内部工具，别被搜索引擎收录
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
