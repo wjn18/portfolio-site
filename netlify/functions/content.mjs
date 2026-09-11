@@ -13,16 +13,21 @@ export async function handler(event) {
   if (isResponse(auth)) return auth;
 
   if (event.httpMethod === "GET") {
-    const cur = await readFile(CONTENT_PATH);
-    if (!cur) return fail(404, "NOT_FOUND", `仓库里找不到 ${CONTENT_PATH}`);
-
-    let snapshot;
     try {
-      snapshot = JSON.parse(cur.text);
-    } catch {
-      return fail(502, "UPSTREAM", "content.json 不是合法 JSON，请到 GitHub 上手工修复");
+      const cur = await readFile(CONTENT_PATH);
+      if (!cur) return fail(404, "NOT_FOUND", `仓库里找不到 ${CONTENT_PATH}`);
+
+      let snapshot;
+      try {
+        snapshot = JSON.parse(cur.text);
+      } catch {
+        return fail(502, "UPSTREAM", "content.json 不是合法 JSON，请到 GitHub 上手工修复");
+      }
+      return ok({ snapshot, sha: cur.sha });
+    } catch (err) {
+      if (err instanceof ConfigError) return fail(500, "CONFIG", err.message);
+      return fail(502, "UPSTREAM", err.message);
     }
-    return ok({ snapshot, sha: cur.sha });
   }
 
   if (event.httpMethod === "PUT") {

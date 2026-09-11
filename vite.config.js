@@ -5,18 +5,23 @@ import { defineConfig } from "vite";
 const root = fileURLToPath(new URL(".", import.meta.url));
 
 /**
- * dev 下 /admin 会被 SPA fallback 劫持成访客站首页（Netlify 生产没这个问题，
- * 它按目录索引把 /admin 解析到 /admin/index.html）。
- * 这里手动重写，保证本地与线上行为一致。
+ * dev 下让 /admin 的行为对齐 Netlify 生产环境：
+ * 生产上 Netlify 的 pretty URL 会把 /admin 301 重定向到 /admin/。
+ * dev 若只做内部重写，浏览器地址仍是 /admin（无斜杠），
+ * index.html 里的相对路径 ./main.jsx 会被浏览器解析成 /main.jsx（根目录）→ 404 白屏。
  */
 function adminRewrite() {
   return {
-    name: "dev-rewrite-admin",
+    name: "dev-redirect-admin",
     apply: "serve",
     configureServer(server) {
-      server.middlewares.use((req, _res, next) => {
+      server.middlewares.use((req, res, next) => {
         if (req.url === "/admin" || req.url.startsWith("/admin?")) {
-          req.url = "/admin/index.html";
+          const q = req.url.indexOf("?");
+          res.statusCode = 301;
+          res.setHeader("Location", `/admin/${q >= 0 ? req.url.slice(q) : ""}`);
+          res.end();
+          return;
         }
         next();
       });

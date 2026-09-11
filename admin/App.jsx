@@ -29,6 +29,7 @@ export default function App() {
   const [msg, setMsg] = useState(null);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState(null);
+  const [contentError, setContentError] = useState(null);
 
   useEffect(() => {
     const onHash = () => setTab(hashKey());
@@ -49,8 +50,15 @@ export default function App() {
         setDirty(false);
       }
     } catch (err) {
-      setAuthed(false);
-      setLoadError(err.message);
+      if (err.status === 401) {
+        setAuthed(false);
+        setLoadError(err.message);
+      } else {
+        // 已登录但内容加载失败（如 GITHUB_TOKEN 未配置）：
+        // 保持登录态进后台，把原因亮出来，而不是踢回登录页
+        setAuthed(true);
+        setContentError(err.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -118,6 +126,7 @@ export default function App() {
     setAuthed(false);
     setSnapshot(null);
     setDirty(false);
+    setContentError(null);
   }, []);
 
   if (loading) {
@@ -172,7 +181,18 @@ export default function App() {
 
       <div className="wrap">
         {msg && <div className={`banner ${msg.type === "error" ? "error" : "ok"}`}>{msg.text}</div>}
-        <Page snapshot={snapshot} update={update} refresh={boot} syncAfterFile={syncAfterFile} />
+        {contentError && (
+          <div className="banner error">
+            内容加载失败：{contentError}
+            {contentError.includes("GITHUB_TOKEN") &&
+              " —— 在 .env（本地）或 Netlify 环境变量（线上）填入 PAT 后重试"}
+          </div>
+        )}
+        {snapshot ? (
+          <Page snapshot={snapshot} update={update} refresh={boot} syncAfterFile={syncAfterFile} />
+        ) : (
+          !contentError && <div className="muted">载入中…</div>
+        )}
       </div>
     </>
   );
