@@ -1,0 +1,9 @@
+﻿LS_REMOTE_EXIT=0
+OUT=05bc3743d2795402989a80ecaa48f85adceb6d4e	HEAD
+
+CRED=!gh auth git-credential
+
+USER=wjn18
+
+EMAIL=wuandjianing18@gmail.com
+
