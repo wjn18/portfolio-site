@@ -9,6 +9,11 @@
   # 后台 API（见 netlify/functions/），源码目录，构建时由 Netlify 自动打包
   functions = "netlify/functions"
 
+[build.environment]
+  # GITHUB_REPO 的值是公开仓库名（wjn18/portfolio-site），README/代码里到处出现，
+  # 不是秘密。不加这行，Netlify Secrets Scanning 会把它当泄漏密钥，每次构建直接失败。
+  SECRETS_SCAN_OMIT_KEYS = "GITHUB_REPO"
+
 [dev]
   # 本地 `npx netlify dev` 用。
   # 必须显式声明 targetPort：Netlify 默认等 Vite 在 5173，而本项目 vite.config.js
