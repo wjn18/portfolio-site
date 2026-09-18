@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-11T03:05:08.075Z",
-  "updatedBy": "seed",
+  "updatedAt": "2026-09-18T09:24:42.513Z",
+  "updatedBy": "admin",
   "profile": {
     "name": "吴嘉宁",
     "englishTitle": "Game Design Portfolio",
@@ -89,14 +89,6 @@
         "以 Unity 6 为主力引擎，同时具备 Godot 与 UE5 的实操经验",
         "使用 C# / Python / TypeScript 完成从玩法原型到工具链的端到端开发",
         "熟悉数据驱动架构：配置表 → 导入器 → 运行时数据，支撑策划自助改数值"
-      ]
-    },
-    {
-      "title": "自动化与验证",
-      "items": [
-        "搭建自动化构建、冒烟与回归流程，减少重复人力投入",
-        "用双验证机制校验 Agent 产出：视觉检测 + 运行时状态 / 内存检测",
-        "开发编辑器扩展与外部接口（如 MCP），把重复性工作工具化"
       ]
     },
     {
