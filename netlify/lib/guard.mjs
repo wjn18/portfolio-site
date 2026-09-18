@@ -127,7 +127,7 @@ export function validateSnapshot(s) {
   need("actions", isArr, "必须是数组");
   need("nav", isArr, "必须是数组");
   need("spec", isArr, "必须是数组");
-  need("about", (v) => isArr(v) && v.length >= 5 && v.every(isStr), "必须是至少 5 段的字符串数组");
+  need("about", (v) => isArr(v) && v.every(isStr), "必须是字符串数组");
   need("skills", isArr, "必须是数组");
   need("gameExperience", isArr, "必须是数组");
   need("contacts", isArr, "必须是数组");

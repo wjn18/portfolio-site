@@ -83,7 +83,7 @@ Whenever `resume.pdf` changes, the agent MUST:
 
 ### Content constraints (validated server-side on save)
 
-- `about`: at least 5 paragraphs. #1 = self-intro, last = closing line. Order matters.
+- `about`: string array with no minimum paragraph count. Render non-empty paragraphs in order.
 - `profile.education`: newline-separated, line 1 = school, line 2 = period.
 - `projects[]` / `videos[]`: each needs `id`, numeric `sort`, boolean `visible`.
 - Videos store **external links only** — never upload video files.

@@ -32,7 +32,12 @@ check("jwt 空值被拒", verifyToken(null, secret) === null);
 const snap = JSON.parse(await readFile("src/data/content.json", "utf8"));
 const errs = validateSnapshot(snap);
 check("真实 content.json 校验通过", errs.length === 0, errs.join(";"));
-check("about 少于 5 段被拦", validateSnapshot({ ...snap, about: ["只有一段"] }).length > 0);
+for (const count of [0, 1, 2, 5, 7]) {
+  check(`about ${count} 段校验通过`, validateSnapshot({ ...snap, about: Array.from({ length: count }, (_, i) => `第 ${i + 1} 段`) }).length === 0);
+}
+for (const about of [null, "不是数组", ["正文", 42]]) {
+  check("about 非字符串数组被拦", validateSnapshot({ ...snap, about }).length > 0);
+}
 check("projects 缺 visible 被拦", validateSnapshot({ ...snap, projects: [{ title: "x" }] }).length > 0);
 check("videos platform 非法被拦", validateSnapshot({ ...snap, videos: [{ title: "a", url: "u", platform: "qq" }] }).length > 0);
 

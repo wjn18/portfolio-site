@@ -9,7 +9,7 @@ import Reveal from "./Reveal";
 const [schoolLine, periodLine] = profile.education.split("\n");
 
 export default function AboutSection() {
-  const [bio, , , , closing] = aboutParagraphs;
+  const paragraphs = aboutParagraphs.filter((paragraph) => paragraph.trim());
 
   return (
     <section className="section section--divided" id="about" aria-labelledby="about-title">
@@ -23,8 +23,14 @@ export default function AboutSection() {
 
         <div className="about__grid">
           <Reveal>
-            <p className="about__lead">{bio}</p>
-            <p className="pullquote">{closing}</p>
+            {paragraphs.map((paragraph, index) => (
+              <p
+                key={index}
+                className={index > 0 && index === paragraphs.length - 1 ? "pullquote" : "about__lead"}
+              >
+                {paragraph}
+              </p>
+            ))}
             <dl className="dossier__rows">
               <div className="dossier__row">
                 <b>在职</b>

@@ -5,8 +5,7 @@
  * 内容唯一事实来源是 src/data/content.json，由 /admin 后台维护。
  *
  * 约束（改之前先看）：
- * - AboutSection 用 `const [bio, , , , closing] = aboutParagraphs`，
- *   依赖 about 数组「至少 5 段、第 1 段是自我介绍、最后 1 段是收尾」。
+ * - about 是字符串数组，段落数量不限；AboutSection 按顺序展示非空段落。
  * - AboutSection 用 `profile.education.split("\n")`，education 支持换行。
  */
 import content from "./content.json";

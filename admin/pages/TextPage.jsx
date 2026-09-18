@@ -103,7 +103,7 @@ export default function TextPage({ snapshot, update }) {
       <div className="card">
         <h2>关于我</h2>
         <p className="hint">
-          至少保留 5 段：第 1 段是自我介绍，最后 1 段是收尾语，中间是正文。顺序变了页面会串。
+          段落数量不限，按这里的顺序展示；空白段落不显示。
         </p>
         {snapshot.about.map((para, i) => (
           <div className="row" key={i} style={{ alignItems: "flex-start" }}>
